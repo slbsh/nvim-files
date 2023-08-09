@@ -5,6 +5,13 @@ local keymap = {
    t = {':ToggleTerm<CR>', 'terminal'},
    T = {':ToggleTermAll<CR>', 'terminal all'},
 
+   s = {
+      name = '+Surround',
+      d = 'delete surround',
+      s = 'surround',
+      S = 'surround line',
+   },
+
    b = {
       name = '+Buffers',
       r = {'<Cmd>Telescope buffers<CR>', 'current'},

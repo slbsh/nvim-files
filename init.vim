@@ -64,7 +64,8 @@ call plug#begin()
    Plug 'tpope/vim-surround'       " to be configured
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
-   Plug 'Bhanukamax/tman.nvim'
+   Plug 'Saecki/crates.nvim'   "check if it works
+   Plug 'jiangmiao/auto-pairs'
 
    " appearance
    Plug 'nvim-lualine/lualine.nvim'
@@ -88,6 +89,16 @@ set timeoutlen=800
 
 " smoothie
 let g:smoothie_enabled = 1
+
+" pairing
+let g:auto_pairs_map = {
+    \ "'": "'",
+    \ '"': '"',
+    \ '(': ')',
+    \ '[': ']',
+    \ '{': '}',
+    \ '<': '>',
+    \ }
 
 " change tabs func
 fu! s:tobur(num) abort
@@ -121,6 +132,10 @@ nnoremap <silent> <M-8> :<C-u>call <SID>tobur(8)<CR>
 
 nmap <silent> <leader>c gcc
 vmap <silent> <leader>c gc
+
+nmap <silent> <leader>sS yss
+nmap <silent> <leader>ss ysiw
+nmap <silent> <leader>sd ds
 
 " command aliases
 command! -nargs=0 Q q

@@ -34,6 +34,7 @@ let s:warning2=  "#ef2907"
 let s:selection= "#3a2f1e"
 let s:highvis=   "#766e32"
 let s:green=     "#708d2e"
+let s:yellow=    "#f3e00f"
 
 " the stuff
 exe 'hi Ptrs guifg='s:highvis' gui=bold,italic'
@@ -46,7 +47,7 @@ exe 'hi ColorColumn  guibg='s:bg2
 exe 'hi FoldColumn guifg='s:comment' guibg='s:bg2
 exe 'hi SignColumn guifg='s:comment' guibg='s:bg2
 exe 'hi LineNr guifg='s:fg' guibg='s:menus
-exe 'hi CursorLineNr guifg='s:highvis' guibg='s:bg2
+exe 'hi CursorLineNr guifg='s:yellow' guibg='s:bg2
 exe 'hi VertSplit guifg='s:fg3' guibg='s:bg3
 exe 'hi MatchParen guifg='s:warning2'  gui=underline'
 exe 'hi StatusLine guifg='s:fg2' guibg='s:bg2' gui=bold'
