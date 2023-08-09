@@ -32,9 +32,9 @@ let s:var=       "#d48600"
 let s:warning=   "#ff0051"
 let s:warning2=  "#ef2907"
 let s:selection= "#3a2f1e"
-let s:highvis=   "#766e32"
+let s:highvis=   "#d5c730"
 let s:green=     "#708d2e"
-let s:yellow=    "#f3e00f"
+let s:yellow=    "#f7ef00"
 
 " the stuff
 exe 'hi Ptrs guifg='s:highvis' gui=bold,italic'

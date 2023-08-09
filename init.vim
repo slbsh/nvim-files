@@ -7,7 +7,7 @@ set title
 set wildmenu
 set expandtab
 set shiftwidth=3
-set tabstop=4
+set tabstop=3
 set nocompatible
 set scrolloff=8
 set nowrap
@@ -33,7 +33,7 @@ syntax on
 let &t_ZH="\e[3m"
 let &t_ZR="\e[23m"
 
-" PLUGINS ---------------------------------------------------------------{{{
+" PLUGINS ---------------------------------------------
 call plug#begin()
    Plug 'nvim-lua/plenary.nvim'
    
@@ -61,20 +61,17 @@ call plug#begin()
    Plug 'liuchengxu/vim-which-key'
    Plug 'AckslD/nvim-whichkey-setup.lua'
    Plug 'mg979/vim-visual-multi'
-   Plug 'tpope/vim-surround'       " to be configured
+   Plug 'tpope/vim-surround'
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
    Plug 'Saecki/crates.nvim'   "check if it works
-   Plug 'jiangmiao/auto-pairs'
 
-   " appearance
    Plug 'nvim-lualine/lualine.nvim'
    Plug 'nvim-tree/nvim-web-devicons' 
    Plug 'psliwka/vim-smoothie'
    Plug 'lukas-reineke/indent-blankline.nvim'
    Plug 'RRethy/vim-illuminate'
 call plug#end()
-" }}}
    
 "
 " Imports
@@ -95,12 +92,21 @@ let g:auto_pairs_map = {
     \ "'": "'",
     \ '"': '"',
     \ '(': ')',
-    \ '[': ']',
+    \ '[': '',
     \ '{': '}',
     \ '<': '>',
     \ }
 
-" change tabs func
+
+" copilot
+let g:copilot_filetypes = {
+   \ '*': v:true,
+   \ }
+
+let b:copilot_enable = v:true
+
+
+"change tabs func
 fu! s:tobur(num) abort
    let ls = split(execute(':ls'), "\n")
    let buffers = []
@@ -130,12 +136,14 @@ nnoremap <silent> <M-6> :<C-u>call <SID>tobur(6)<CR>
 nnoremap <silent> <M-7> :<C-u>call <SID>tobur(7)<CR>
 nnoremap <silent> <M-8> :<C-u>call <SID>tobur(8)<CR>
 
+
 nmap <silent> <leader>c gcc
 vmap <silent> <leader>c gc
 
 nmap <silent> <leader>sS yss
 nmap <silent> <leader>ss ysiw
 nmap <silent> <leader>sd ds
+
 
 " command aliases
 command! -nargs=0 Q q
