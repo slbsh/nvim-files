@@ -31,6 +31,7 @@ local keymap = {
       e = {':lua require("harpoon.ui").toggle_quick_menu()<CR>', 'menu'},
       D = {':call delete(expand("%")) | bdelete!<CR>', 'delete'},
       w = {':Telescope live_grep<CR>', 'grep'},
+      f = {':Telescope find_files<CR>', 'find'},
       R = {':Rename ', 'rename'},
    },
 
@@ -39,11 +40,22 @@ local keymap = {
       C = {':Calendar<CR>', 'calendar'},
       c = {':lua _clippy_toggle()<CR>', 'clippy'},
       b = {':lua _broot_toggle()<CR>', 'broot'},
+      B = {':lua _btop_toggle()<CR>', 'btop'},
       n = {':lua _ncmpcpp_toggle()<CR>', 'ncmpcpp'},
       w = {':lua _wikitui_toggle()<CR>', 'wikitui'},
-      h = {':lua _htop_toggle()<CR>', 'htop'},
       f = {':lua _fish_toggle()<CR>', 'fish'},
       d = {':lua _discordo_toggle()<CR>', 'discord'},
+   },
+
+   C = {
+      name = '+Crates',
+      t = {':lua require("crates").toggle()<CR>', 'toggle'},
+      r = {':lua require("crates").reload()<CR>', 'reload'},
+      v = {':lua require("crates").show_versions_popup()<CR>', 'version'},
+      f = {':lua require("crates").show_features_popup()<CR>', 'features'},
+      d = {':lua require("crates").show_dependencies_popup()<CR>', 'dependencies'},
+      u = {':lua require("crates").upgrade_crate()<CR>', 'update'},
+      U = {':lua require("crates").upgrade_all_crates()<CR>', 'update all'},
    },
 }
 

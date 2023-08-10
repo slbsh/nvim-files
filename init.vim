@@ -5,9 +5,11 @@ set cursorline
 set number
 set title
 set wildmenu
+
 set expandtab
 set shiftwidth=3
 set tabstop=3
+
 set nocompatible
 set scrolloff=8
 set nowrap
@@ -143,6 +145,10 @@ vmap <silent> <leader>c gc
 nmap <silent> <leader>sS yss
 nmap <silent> <leader>ss ysiw
 nmap <silent> <leader>sd ds
+
+" cmp
+cmap <expr> <Up> pumvisible() ? "\<C-p>" : "\<Up>"
+cmap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 
 
 " command aliases

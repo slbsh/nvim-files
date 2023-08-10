@@ -2,36 +2,49 @@
 local cmp = require'cmp'
 
 cmp.setup({
- snippet = {
-   expand = function(args)
-     require('luasnip').lsp_expand(args.body)
-   end,
- },
- mapping = cmp.mapping.preset.insert({
-   ['<C-Space>'] = cmp.mapping.complete(),
-   ['<C-e>'] = cmp.mapping.abort(),
-   ['`'] = cmp.mapping.confirm({ select = true }), 
- }),
- sources = cmp.config.sources({
-   { name = 'luasnip' },
- }, {
-   { name = 'buffer' },
- })
+   snippet = {
+      expand = function(args)
+         require('luasnip').lsp_expand(args.body)
+      end,
+   },
+
+   mapping = {
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['`'] = cmp.mapping.confirm({ select = true }), 
+   },
+
+   sources = {
+      { name = 'luasnip' },
+      { name = 'path' }, 
+      { name = 'buffer' },
+      { name = 'crates' },
+   },
+
+   formatting = {
+      menu = {
+         border = 'rounded',
+         shadow = true,
+      },
+   },
 })
 
 cmp.setup.cmdline({ '/', '?' }, {
- mapping = cmp.mapping.preset.cmdline(),
- sources = {
-   { name = 'buffer' }
- }
+   mapping = cmp.mapping.preset.cmdline(),
+
+   sources = {
+      { name = 'buffer' }
+   }
 })
 
 cmp.setup.cmdline(':', {
- mapping = cmp.mapping.preset.cmdline(),
- sources = cmp.config.sources({
-   { name = 'path' }
- }, {
-   { name = 'cmdline' }
- })
+   mapping = cmp.mapping.preset.cmdline(),
+
+   sources = cmp.config.sources({
+      { name = 'path' }
+   }, {
+      { name = 'cmdline'}
+   })
 })
 
+require('crates').setup()
