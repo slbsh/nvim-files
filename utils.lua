@@ -11,10 +11,6 @@ require('telescope').setup {
 
 require('telescope').load_extension('fzf')
 
-require('harpoon').setup()
-require('telescope').load_extension('harpoon')
-
-
 require('Comment').setup()
 
 -- terminal stuff
@@ -67,11 +63,5 @@ end
 local fish = Terminal:new({ cmd = 'fish'})
 
 function _fish_toggle()
-  fish:toggle()
-end
-
-local discordo = Terminal:new({ cmd = 'discordo run --token="NjI3MDE1OTc3MjMzNjc4MzM2.GLTl_y.sV_IUOJloLhHQs8qPD3yK3YztM-sIx4NANts7I"'})
-
-function _discordo_toggle()
-  discordo:toggle()
+   fish:toggle()
 end

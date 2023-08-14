@@ -11,7 +11,7 @@ set shiftwidth=3
 set tabstop=3
 
 set nocompatible
-set scrolloff=8
+set scrolloff=3
 set nowrap
 set autoread
 
@@ -55,7 +55,6 @@ call plug#begin()
    Plug 'nvim-telescope/telescope.nvim'
    Plug 'is0n/fm-nvim'
    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-   Plug 'ThePrimeagen/harpoon'
    Plug 'tpope/vim-eunuch'
    Plug 'christoomey/vim-tmux-navigator'
 
@@ -66,7 +65,7 @@ call plug#begin()
    Plug 'tpope/vim-surround'
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
-   Plug 'Saecki/crates.nvim'   "check if it works
+   Plug 'Saecki/crates.nvim'
 
    Plug 'nvim-lualine/lualine.nvim'
    Plug 'nvim-tree/nvim-web-devicons' 

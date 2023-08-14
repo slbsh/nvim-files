@@ -97,12 +97,14 @@ exe 'hi Underlined   gui=underline'
 
 exe 'hi IlluminatedWordText gui=underline'
 
+" bg4
+" func
 " Neovim Terminal Mode
 let g:terminal_color_0  = s:bg
 let g:terminal_color_1  = s:warning
 let g:terminal_color_2  = s:keyword
-let g:terminal_color_3  = s:bg4
-let g:terminal_color_4  = s:func
+let g:terminal_color_3  = s:func
+let g:terminal_color_4  = s:green
 let g:terminal_color_5  = s:builtin
 let g:terminal_color_6  = s:fg3
 let g:terminal_color_7  = s:str
