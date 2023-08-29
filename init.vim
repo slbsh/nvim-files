@@ -48,7 +48,6 @@ call plug#begin()
    Plug 'L3MON4D3/LuaSnip'
    Plug 'saadparwaiz1/cmp_luasnip'
 
-   Plug 'itchyny/calendar.vim'
    Plug 'plasticboy/vim-markdown'
 
    " file managment / navigation
@@ -66,7 +65,9 @@ call plug#begin()
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
    Plug 'Saecki/crates.nvim'
+   Plug 'itchyny/calendar.vim'
 
+   " appearance
    Plug 'nvim-lualine/lualine.nvim'
    Plug 'nvim-tree/nvim-web-devicons' 
    Plug 'psliwka/vim-smoothie'
@@ -88,21 +89,8 @@ set timeoutlen=800
 " smoothie
 let g:smoothie_enabled = 1
 
-" pairing
-let g:auto_pairs_map = {
-    \ "'": "'",
-    \ '"': '"',
-    \ '(': ')',
-    \ '[': '',
-    \ '{': '}',
-    \ '<': '>',
-    \ }
-
 " copilot
-let g:copilot_filetypes = {
-   \ '*': v:true,
-   \ }
-
+let g:copilot_filetypes = {'*': v:true}
 let b:copilot_enable = v:true
 
 "change tabs func
@@ -157,4 +145,10 @@ command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(
 
 luafile /home/slab/.config/nvim/keymaps.lua
 
-autocmd VimEnter * call timer_start(1, {-> execute(':silent colorscheme brust')})
+" custom syntax
+autocmd VimEnter * call timer_start(5, 'SyntaxStuff')
+
+fu! SyntaxStuff(timer)
+   syntax match Ptrs /[&*|]/
+   luafile /home/slab/.config/nvim/bettercomments.lua
+endf

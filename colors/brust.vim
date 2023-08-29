@@ -5,8 +5,6 @@ if exists("syntax on")
    syntax reset
 endif
 
-syntax match Ptrs /[&*|]/
-
 set t_Co=256
 let g:colors_name = "brust"
 set termguicolors
@@ -97,6 +95,11 @@ exe 'hi Underlined   gui=underline'
 
 exe 'hi IlluminatedWordText gui=underline'
 
+
+exe 'hi ErrorComment gui=bold guifg='s:const
+exe 'hi QuestComment gui=bold guifg='s:green
+exe 'hi NoteComment  gui=bold guifg='s:highvis
+
 " bg4
 " func
 " Neovim Terminal Mode
@@ -130,3 +133,6 @@ exe 'hi htmlSpecialTagName guifg='s:keyword
 
 " Markdown Highlighting
 exe 'hi mkdCode guifg='s:builtin
+
+" custom syntax
+
