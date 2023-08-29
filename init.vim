@@ -98,14 +98,12 @@ let g:auto_pairs_map = {
     \ '<': '>',
     \ }
 
-
 " copilot
 let g:copilot_filetypes = {
    \ '*': v:true,
    \ }
 
 let b:copilot_enable = v:true
-
 
 "change tabs func
 fu! s:tobur(num) abort
