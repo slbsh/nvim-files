@@ -48,7 +48,7 @@ call plug#begin()
    Plug 'L3MON4D3/LuaSnip'
    Plug 'saadparwaiz1/cmp_luasnip'
 
-   Plug 'plasticboy/vim-markdown'
+   " Plug 'plasticboy/vim-markdown'
 
    " file managment / navigation
    Plug 'nvim-telescope/telescope.nvim'

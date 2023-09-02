@@ -95,10 +95,11 @@ exe 'hi Underlined   gui=underline'
 
 exe 'hi IlluminatedWordText gui=underline'
 
-
+" better comments
 exe 'hi ErrorComment gui=bold guifg='s:const
 exe 'hi QuestComment gui=bold guifg='s:green
 exe 'hi NoteComment  gui=bold guifg='s:highvis
+" exe 'hi NormComment guifg='s:comment
 
 " bg4
 " func
