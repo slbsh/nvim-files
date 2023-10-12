@@ -1,12 +1,12 @@
 require('telescope').setup {
-  extensions = {
-    fzf = {
-      fuzzy = true,                    -- false will only do exact matching
-      override_generic_sorter = true,  -- override the generic sorter
-      override_file_sorter = true,     -- override the file sorter
-      case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
-    }
-  }
+   extensions = {
+      fzf = {
+         fuzzy = true,                    -- false will only do exact matching
+         override_generic_sorter = true,  -- override the generic sorter
+         override_file_sorter = true,     -- override the file sorter
+         case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+      }
+   }
 }
 
 require('telescope').load_extension('fzf')
@@ -33,35 +33,43 @@ local Terminal = require('toggleterm.terminal').Terminal
 local clippy = Terminal:new({ cmd = 'bacon clippy' })
 
 function _clippy_toggle()
-  clippy:toggle()
+   clippy:toggle()
 end
 
 local broot = Terminal:new({ cmd = 'br'})
 
 function _broot_toggle()
-  broot:toggle()
+   broot:toggle()
 end
 
 local ncmpcpp = Terminal:new({ cmd = 'ncmpcpp'})
 
 function _ncmpcpp_toggle()
-  ncmpcpp:toggle()
+   ncmpcpp:toggle()
 end
 
 local wikitui = Terminal:new({ cmd = 'wiki-tui'})
 
 function _wikitui_toggle()
-  wikitui:toggle()
+   wikitui:toggle()
 end
 
 local htop = Terminal:new({ cmd = 'htop'})
 
 function _htop_toggle()
-  htop:toggle()
+   htop:toggle()
 end
 
-local fish = Terminal:new({ cmd = 'fish'})
+--
+-- man
+function _man_prompt_toggle(args)
+   local user_input = vim.fn.input('Page: ')
 
-function _fish_toggle()
-   fish:toggle()
+   if user_input ~= '' then
+      Terminal:new({ cmd = 'man ' .. user_input }):toggle()
+   end
 end
+
+vim.cmd([[
+   command! -nargs=* ManPrompt lua _man_prompt_toggle(<q-args>)
+]])

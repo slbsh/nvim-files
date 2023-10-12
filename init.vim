@@ -45,6 +45,9 @@ call plug#begin()
    Plug 'hrsh7th/cmp-buffer'
    Plug 'hrsh7th/cmp-path'
    Plug 'hrsh7th/cmp-cmdline'
+   Plug 'hrsh7th/cmp-calc'
+   Plug 'f3fora/cmp-spell'
+   Plug 'max397574/cmp-greek'
    Plug 'L3MON4D3/LuaSnip'
    Plug 'saadparwaiz1/cmp_luasnip'
 
@@ -54,7 +57,6 @@ call plug#begin()
    Plug 'nvim-telescope/telescope.nvim'
    Plug 'is0n/fm-nvim'
    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-   Plug 'tpope/vim-eunuch'
    Plug 'christoomey/vim-tmux-navigator'
 
    " utils
@@ -65,7 +67,7 @@ call plug#begin()
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
    Plug 'Saecki/crates.nvim'
-   Plug 'itchyny/calendar.vim'
+   Plug 'jghauser/mkdir.nvim'
 
    " appearance
    Plug 'nvim-lualine/lualine.nvim'
@@ -138,8 +140,8 @@ cmap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 
 " command aliases
 command! -nargs=0 Q q
-command! -nargs=? W execute 'SudoWrite' <q-args>
-command! -nargs=? E execute 'SudoEdit' <q-args>
+command! -nargs=0 W w
+command! -nargs=0 E e
 
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 

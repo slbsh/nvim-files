@@ -1,6 +1,6 @@
 local highlights = {
    ["ErrorComment"] = {"!", "DEPRECATED"},
-   ["QuestComment"] = {"?", "QUESTION"},
+   ["QuestComment"] = {"?", "QUESTION", "SAFETY"},
    ["NoteComment"] = {"#", "FOOTNOTE", "NOTE", "INFO"},
 }
 
