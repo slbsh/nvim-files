@@ -53,13 +53,3 @@ cmp.setup.cmdline(':', {
 
 require('crates').setup()
 
--- spell check
-vim.opt_local.spelllang = 'en_us'
-
-function toggle_spell()
-   if vim.opt_local.spell:get() then
-      vim.opt_local.spell = false
-   else
-      vim.opt_local.spell = true
-   end
-end

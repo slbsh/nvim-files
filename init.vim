@@ -40,7 +40,6 @@ call plug#begin()
    Plug 'nvim-lua/plenary.nvim'
    
    " completion
-   Plug 'github/copilot.vim'   
    Plug 'hrsh7th/nvim-cmp'
    Plug 'hrsh7th/cmp-buffer'
    Plug 'hrsh7th/cmp-path'
@@ -57,17 +56,16 @@ call plug#begin()
    Plug 'nvim-telescope/telescope.nvim'
    Plug 'is0n/fm-nvim'
    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
-   Plug 'christoomey/vim-tmux-navigator'
 
    " utils
    Plug 'liuchengxu/vim-which-key'
    Plug 'AckslD/nvim-whichkey-setup.lua'
    Plug 'mg979/vim-visual-multi'
-   Plug 'tpope/vim-surround'
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
    Plug 'Saecki/crates.nvim'
    Plug 'jghauser/mkdir.nvim'
+   Plug 'https://github.com/VidocqH/auto-indent.nvim'
 
    " appearance
    Plug 'nvim-lualine/lualine.nvim'
@@ -85,15 +83,8 @@ luafile /home/slab/.config/nvim/utils.lua
 
 colorscheme brust
 
-" whichkey
 set timeoutlen=800
-
-" smoothie
 let g:smoothie_enabled = 1
-
-" copilot
-let g:copilot_filetypes = {'*': v:true}
-let b:copilot_enable = v:true
 
 "change tabs func
 fu! s:tobur(num) abort
@@ -114,6 +105,10 @@ endf
 " keymaps
 let mapleader = " "
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+
+nnoremap <silent> <A-o> o<Tab><BS><Esc>
+nnoremap <silent> <A-O> O<Tab><BS><Esc>
+
 
 " buffers
 nnoremap <silent> <M-1> :<C-u>call <SID>tobur(1)<CR>
@@ -141,16 +136,17 @@ cmap <expr> <Down> pumvisible() ? "\<C-n>" : "\<Down>"
 " command aliases
 command! -nargs=0 Q q
 command! -nargs=0 W w
-command! -nargs=0 E e
+command! -nargs=? E e <q-args>
+command! -nargs=0 WQ wq
 
 command! -complete=file -nargs=1 Remove :echo 'Remove: '.'<f-args>'.' '.(delete(<f-args>) == 0 ? 'SUCCEEDED' : 'FAILED')
 
 luafile /home/slab/.config/nvim/keymaps.lua
 
 " custom syntax
-autocmd VimEnter * call timer_start(5, 'SyntaxStuff')
+" autocmd VimEnter * call timer_start(5, 'SyntaxStuff')
+autocmd BufRead * call timer_start(5, 'SyntaxStuff')
 
 fu! SyntaxStuff(timer)
-   syntax match Ptrs /[&*|]/
    luafile /home/slab/.config/nvim/bettercomments.lua
 endf

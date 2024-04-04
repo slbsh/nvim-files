@@ -35,28 +35,30 @@ let s:green=     "#708d2e"
 let s:yellow=    "#f7ef00"
 
 " the stuff
-exe 'hi Ptrs guifg='s:highvis' gui=bold,italic'
-exe 'hi Normal guifg='s:fg' guibg='s:bg
-exe 'hi Cursor guifg='s:bg' guibg='s:fg
-exe 'hi CursorLine  guibg='s:bg2
+exe 'hi Ptrs         guifg='s:highvis' gui=bold,italic'
+exe 'hi Normal       guifg='s:fg' guibg='s:bg
+exe 'hi Cursor       guifg='s:bg' guibg='s:fg
+exe 'hi CursorLine   guibg='s:bg2
 exe 'hi CursorLineNr guifg='s:str' guibg='s:bg
-exe 'hi CursorColumn  guibg='s:bg2
+exe 'hi CursorColumn guibg='s:bg2
 exe 'hi ColorColumn  guibg='s:bg2
-exe 'hi FoldColumn guifg='s:comment' guibg='s:bg2
-exe 'hi SignColumn guifg='s:comment' guibg='s:bg2
-exe 'hi LineNr guifg='s:fg' guibg='s:menus
+exe 'hi FoldColumn   guifg='s:comment' guibg='s:bg2
+exe 'hi SignColumn   guifg='s:comment' guibg='s:bg2
+exe 'hi LineNr       guifg='s:fg' guibg='s:menus
 exe 'hi CursorLineNr guifg='s:yellow' guibg='s:bg2
-exe 'hi VertSplit guifg='s:fg3' guibg='s:bg3
-exe 'hi MatchParen guifg='s:warning2'  gui=underline'
-exe 'hi StatusLine guifg='s:fg2' guibg='s:bg2' gui=bold'
-exe 'hi Pmenu guifg='s:fg' guibg='s:bg2
-exe 'hi PmenuSel  guibg='s:bg3
-exe 'hi IncSearch guifg='s:bg' guibg='s:keyword
-exe 'hi Search   gui=underline'
-exe 'hi Directory guifg='s:const
-exe 'hi Folded guifg='s:fg4' guibg='s:bg
-exe 'hi WildMenu guifg='s:str' guibg='s:bg
-exe 'hi Visual guibg='s:selection
+exe 'hi VertSplit    guifg='s:fg3' guibg='s:bg3
+exe 'hi MatchParen   guifg='s:warning2'  gui=underline'
+exe 'hi StatusLine   guifg='s:fg2' guibg='s:bg2' gui=bold'
+
+exe 'hi Pmenu        guifg='s:fg' guibg='s:bg2
+exe 'hi PmenuSel     guibg='s:bg3
+
+exe 'hi IncSearch    guifg='s:bg' guibg='s:keyword
+exe 'hi Search       gui=underline'
+exe 'hi Directory    guifg='s:const
+exe 'hi Folded       guifg='s:fg4' guibg='s:bg
+exe 'hi WildMenu     guifg='s:str' guibg='s:bg
+exe 'hi Visual       guibg='s:selection
 
 exe 'hi Boolean guifg='s:const
 exe 'hi Character guifg='s:const
