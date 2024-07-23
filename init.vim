@@ -47,25 +47,22 @@ call plug#begin()
    Plug 'hrsh7th/cmp-calc'
    Plug 'f3fora/cmp-spell'
    Plug 'max397574/cmp-greek'
-   Plug 'L3MON4D3/LuaSnip'
-   Plug 'saadparwaiz1/cmp_luasnip'
-
-   " Plug 'plasticboy/vim-markdown'
 
    " file managment / navigation
    Plug 'nvim-telescope/telescope.nvim'
    Plug 'is0n/fm-nvim'
    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
+   Plug 'tpope/vim-fugitive'
 
    " utils
-   Plug 'liuchengxu/vim-which-key'
-   Plug 'AckslD/nvim-whichkey-setup.lua'
+   Plug 'folke/which-key.nvim'
    Plug 'mg979/vim-visual-multi'
    Plug 'numToStr/Comment.nvim'
    Plug 'akinsho/toggleterm.nvim'
    Plug 'Saecki/crates.nvim'
    Plug 'jghauser/mkdir.nvim'
    Plug 'https://github.com/VidocqH/auto-indent.nvim'
+   Plug 'folke/persistence.nvim'
 
    " appearance
    Plug 'nvim-lualine/lualine.nvim'
@@ -73,6 +70,7 @@ call plug#begin()
    Plug 'psliwka/vim-smoothie'
    Plug 'lukas-reineke/indent-blankline.nvim'
    Plug 'RRethy/vim-illuminate'
+   Plug 'lewis6991/gitsigns.nvim'
 call plug#end()
    
 "
@@ -80,8 +78,9 @@ call plug#end()
 luafile /home/slab/.config/nvim/completions.lua
 luafile /home/slab/.config/nvim/appearance.lua
 luafile /home/slab/.config/nvim/utils.lua
+luafile /home/slab/.config/nvim/bettercomments.lua
 
-colorscheme brust
+colorscheme rust
 
 set timeoutlen=800
 let g:smoothie_enabled = 1
@@ -104,7 +103,6 @@ endf
 "
 " keymaps
 let mapleader = " "
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 nnoremap <silent> <A-o> o<Tab><BS><Esc>
 nnoremap <silent> <A-O> O<Tab><BS><Esc>
@@ -145,8 +143,7 @@ luafile /home/slab/.config/nvim/keymaps.lua
 
 " custom syntax
 " autocmd VimEnter * call timer_start(5, 'SyntaxStuff')
-autocmd BufRead * call timer_start(5, 'SyntaxStuff')
+" autocmd BufReadPost * call timer_start(5, 'SyntaxStuff')
 
-fu! SyntaxStuff(timer)
-   luafile /home/slab/.config/nvim/bettercomments.lua
-endf
+" fu! SyntaxStuff(timer)
+" end

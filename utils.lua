@@ -12,10 +12,12 @@ require('telescope').setup {
 require('telescope').load_extension('fzf')
 
 require('Comment').setup()
-local ft = require('Comment.ft')
+require('Comment.ft').hjson = '#%s'
 
-ft.hjson = '#%s'
 
+local ps = require("persistence")
+ps.setup()
+vim.api.nvim_create_autocmd("VimEnter", { callback = ps.load })
 
 
 -- terminal stuff

@@ -4,24 +4,29 @@ local cmp = require'cmp'
 cmp.setup({
    snippet = {
       expand = function(args)
-         require('luasnip').lsp_expand(args.body)
+         vim.snippet.expand(args.body)
       end,
    },
 
-   mapping = {
-      ['<C-Space>'] = cmp.mapping.complete(),
+   mapping = cmp.mapping.preset.insert({      
+      ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+      ["<C-f>"] = cmp.mapping.scroll_docs(4),
+      ['<leader>'] = cmp.mapping.complete(),
       ['<C-e>'] = cmp.mapping.abort(),
-      ['<Down>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<Up>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-      ['<CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Insert }),
-      ['S-Tab'] = cmp.mapping.select_prev_item(),
-   },
+      ['<Down>'] = cmp.mapping.select_next_item(),
+      ['<Up>'] = cmp.mapping.select_prev_item(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true}),
+      
+      ['<S-CR>'] = cmp.mapping.confirm({ select = true, behavior = cmp.ConfirmBehavior.Replace }),
+
+      ['<Tab>'] = cmp.mapping.select_next_item(),
+      ['<S-Tab>'] = cmp.mapping.select_prev_item(),
+   }),
 
    sources = {
       { name = 'crates' },
       { name = 'calc' },
       { name = 'greek' },
-      { name = 'luasnip' },
       { name = 'path' }, 
       { name = 'buffer' },
       { name = 'spell' },
