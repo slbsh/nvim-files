@@ -1,6 +1,4 @@
-vim.cmd([[ command! -nargs=1 RenameFile lua _rename__file(<q-args>) ]])
-
--- this doesnt work
+-- Toggles
 function toggle_wrap()
   if vim.api.nvim_get_option("wrap") then
     vim.api.nvim_set_option("wrap", false)
@@ -9,7 +7,6 @@ function toggle_wrap()
   end
 end
 
--- spell check
 vim.opt_local.spelllang = 'en_us'
 function toggle_spell()
    if vim.opt_local.spell:get() then
@@ -20,6 +17,10 @@ function toggle_spell()
 end
 
 
+
+
+
+-- Formatting
 local formatters = {
    [".rs"] = 'cargo fmt',
 }
@@ -39,28 +40,54 @@ function format_buffer()
 end
 
 
+
+-- Git
 function set_upstream()
    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
    branch = string.gsub(branch, "\n", "")
 
-   vim.cmd("silent! git branch --set-upstream-to=origin/" .. branch)
-   print("origin/" .. branch)
+   local out = vim.fn.system("git branch -u origin/" .. branch)
+   vim.notify(out, "info")
 end
 
+function change_branch()
+   local branch = vim.fn.input("Branch: ")
+   if branch == "" then
+      return
+   end
+   print("\n")
+
+   local out = vim.fn.system("git checkout " .. branch)
+   vim.notify(out, "info")
+end 
+
+
+-- Comment binds
+vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', {})
+vim.api.nvim_set_keymap('v', '<leader>c', 'gc', {})
+vim.api.nvim_set_keymap('n', '<leader>x', 'gca', {})
+
+
+-- Which Key
 require('which-key').setup {
    triggers = {
-      { "<auto>", mode = "nxsot" },
+      { "<auto>", mode = "nvxsot" },
       -- { "<leader>", mode = "nv" },
    },
 }
+
+local c = require("crates")
 require('which-key').add({
    mode = {"n", "v"},
    
-   {"<leader>c", desc = "comment"},
-   {"<leader><leader>", ":noh<CR>", desc = "clear"},
-   {"<leader>t", ":ToggleTerm<CR>", desc = "terminal"},
-   {"<leader>W", ":lua toggle_wrap()<CR>", desc = "wrap"},
-   {"<leader>w", "<C-w>w", desc = "next window"},
+   {"<leader>c", desc = "comment",         mode = "n"},
+   {"<leader>c", desc = "comment",         mode = "v"},
+   {"<leader>x", desc = "append comment",  mode = "n"},
+
+   {"<leader><leader>", ":noh<CR>",               desc = "clear"},
+   {"<leader>t",        ":ToggleTerm<CR>",        desc = "terminal"},
+   {"<leader>W",        ":lua toggle_wrap()<CR>", desc = "wrap"},
+   {"<leader>w",        "<C-w>w",                 desc = "next window"},
 
 
    -- Spell
@@ -97,6 +124,7 @@ require('which-key').add({
    {"<leader>gg", ":Git<CR>", desc = 'info'},
    {"<leader>gl", ":Git log --oneline --graph<CR>", desc = 'log'},
    {"<leader>g^", ":lua set_upstream()<CR>", desc = 'set upstream'},
+   {"<leader>g@", ":lua change_branch()<CR>", desc = 'checkout'},
 
 
    -- Buffers
@@ -117,7 +145,6 @@ require('which-key').add({
    {"<leader>fr", ':Telescope oldfiles<CR>', desc = 'recent'},
    {"<leader>fw", ':Telescope live_grep<CR>', desc = 'grep'},
    {"<leader>ff", ':Telescope find_files<CR>', desc = 'find'},
-   {"<leader>fR", ':RenameFile<CR>', desc = 'rename'},
 
 
    -- Files
@@ -129,15 +156,15 @@ require('which-key').add({
    {"<leader>aw", ':lua _wikitui_toggle()<CR>', desc = 'wikitui'},
    {"<leader>af", ':lua _fish_toggle()<CR>', desc = 'fish'},
    {"<leader>ag", ':lua _glow_toggle()<CR>', desc = 'glow'},
-   {"<leader>am", ':ManPrompt<CR>', desc = 'man'},
-   {"<leader>at", ':Telnet<CR>', desc = 'telnet'},
+   {"<leader>am", ':lua _man_prompt_toggle()<CR>', desc = 'man'},
+   {"<leader>at", ':lua _telnet_prompt_toggle()<CR>', desc = 'telnet'},
 
 
    -- Crates
    {"<leader>C", group = "Crates"},
-   {"<leader>Cv", ':lua require("crates").show_versions_popup()<CR>', desc = 'version'},
-   {"<leader>Cf", ':lua require("crates").show_features_popup()<CR>', desc = 'features'},
-   {"<leader>Cd", ':lua require("crates").show_dependencies_popup()<CR>', desc = 'dependencies'},
-   {"<leader>Cu", ':lua require("crates").upgrade_crate()<CR>', desc = 'update'},
-   {"<leader>CU", ':lua require("crates").upgrade_all_crates()<CR>', desc = 'update all'},
+   {"<leader>Cv", ':lua c.show_versions_popup()<CR>', desc = 'version'},
+   {"<leader>Cf", ':lua c.show_features_popup()<CR>', desc = 'features'},
+   {"<leader>Cd", ':lua c.show_dependencies_popup()<CR>', desc = 'dependencies'},
+   {"<leader>Cu", ':lua c.upgrade_crate()<CR>', desc = 'update'},
+   {"<leader>CU", ':lua c.upgrade_all_crates()<CR>', desc = 'update all'},
 })

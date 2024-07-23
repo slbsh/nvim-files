@@ -1,23 +1,18 @@
-require('telescope').setup {
-   extensions = {
-      fzf = {
-         fuzzy = true,                    -- false will only do exact matching
-         override_generic_sorter = true,  -- override the generic sorter
-         override_file_sorter = true,     -- override the file sorter
-         case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+function __telescope()
+   local t = require('telescope')
+   t.setup({
+      extensions = {
+         fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+            case_mode = "smart_case",
+         }
       }
-   }
-}
+   })
 
-require('telescope').load_extension('fzf')
-
-require('Comment').setup()
-require('Comment.ft').hjson = '#%s'
-
-
-local ps = require("persistence")
-ps.setup()
-vim.api.nvim_create_autocmd("VimEnter", { callback = ps.load })
+   t.load_extension('fzf')
+end
 
 
 -- terminal stuff
@@ -64,26 +59,22 @@ function _glow_toggle()
    glow:toggle()
 end
 
---
--- man
+
+-- Man
 function _man_prompt_toggle(args)
-   local user_input = vim.fn.input('Page: ')
+   local args = vim.fn.input('Page: ')
 
-   if user_input ~= '' then
-      Terminal:new({ cmd = 'man ' .. user_input }):toggle()
+   if args ~= "" then
+      Terminal:new({ cmd = 'man ' .. args }):toggle()
    end
 end
 
-vim.cmd([[ command! -nargs=* ManPrompt lua _man_prompt_toggle(<q-args>) ]])
 
---
--- telnet
+-- Telnet
 function _telnet_prompt_toggle(args)
-   local user_input = vim.fn.input('Page: ')
+   local args = vim.fn.input('Args: ')
 
-   if user_input ~= '' then
-      Terminal:new({ cmd = 'telnet ' .. user_input }):toggle()
+   if args ~= "" then
+      Terminal:new({ cmd = 'telnet ' .. args }):toggle()
    end
 end
-
-vim.cmd([[ command! -nargs=* Telnet lua _telnet_prompt_toggle(<q-args>) ]])
