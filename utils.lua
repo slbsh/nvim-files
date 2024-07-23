@@ -30,7 +30,6 @@ require('toggleterm').setup{
    shell = vim.o.shell,
 }
 
-require("auto-indent").setup()
 
 local Terminal = require('toggleterm.terminal').Terminal
 

@@ -127,7 +127,10 @@ hi('Debug',          { link = 'Special'                                         
 -- nvimy Syntax Stuff
 hi('@variable',      { fg = YellowLight                                           })
 
--- diff
+-- git
+hi('DiffAdd',        { fg = Green,       bg = Menus                               })
+hi('DiffDelete',     { fg = Red,         bg = Menus                               })
+hi('DiffChange',     { fg = YellowBright,bg = Menus                               })
 hi('Added',          { fg = Green,       bg = Menus                               })
 hi('Removed',        { fg = Red,         bg = Menus                               })
 hi('Changed',        { fg = YellowBright,bg = Menus                               })

@@ -21,8 +21,11 @@ vim.opt.showmode     = false
 vim.opt.ruler        = false
 vim.opt.laststatus   = 0
 vim.opt.showcmd      = false
-
 vim.opt.timeoutlen   = 700
+vim.opt.list         = true
+
+vim.opt.listchars:append "space:⋅"
+vim.opt.listchars:append "eol:↴"
 
 vim.g.mapleader        = " "
 -- vim.g.&t_ZH            = "\e[3m"

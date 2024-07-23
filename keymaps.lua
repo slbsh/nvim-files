@@ -65,14 +65,13 @@ end
 -- Comment binds
 vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', {})
 vim.api.nvim_set_keymap('v', '<leader>c', 'gc', {})
-vim.api.nvim_set_keymap('n', '<leader>x', 'gca', {})
+vim.api.nvim_set_keymap('n', '<leader>x', 'gcA', {})
 
 
 -- Which Key
 require('which-key').setup {
    triggers = {
       { "<auto>", mode = "nvxsot" },
-      -- { "<leader>", mode = "nv" },
    },
 }
 

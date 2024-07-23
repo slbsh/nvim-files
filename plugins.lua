@@ -12,7 +12,9 @@ vim.opt.rtp:prepend(pckr_path)
 local cmd = require('pckr.loader.cmd')
 require('pckr').add({
    'nvim-lua/plenary.nvim',     -- library
-   
+
+
+
    -- Completion
    'hrsh7th/nvim-cmp',          -- Completion Engine
    'hrsh7th/cmp-buffer',        -- .. from buffer
@@ -24,6 +26,7 @@ require('pckr').add({
 
 
 
+   --
    -- File Managment / Navigation
    {'nvim-telescope/telescope.nvim', cond = cmd('Telescope'), config = __telescope}, -- Fuzzy find files
    {'is0n/fm-nvim',                  cond = cmd('Xplr')},                            -- Used for the File Manager `xplr`
@@ -35,12 +38,15 @@ require('pckr').add({
 
 
 
+   --
    -- Utils
    'folke/which-key.nvim',          -- Keybind hints
    'mg979/vim-visual-multi',        -- Multi cursor support
    'akinsho/toggleterm.nvim',       -- Floating terminal
-   'jghauser/mkdir.nvim',           -- automatcally create directories
-   'VidocqH/auto-indent.nvim',      -- auto indent when pressing tab
+
+   {'VidocqH/auto-indent.nvim', config = function()
+      require("auto-indent").setup()
+   end },      -- auto indent when pressing tab
 
    {'Saecki/crates.nvim', config = function()
       require('crates').setup()
@@ -53,12 +59,19 @@ require('pckr').add({
 
 
 
+   --
    -- Appearance
    'nvim-lualine/lualine.nvim',           -- status line
    'nvim-tree/nvim-web-devicons',         -- icons library
    'psliwka/vim-smoothie',                -- smooth scrolling
-   'RRethy/vim-illuminate',               -- passive highlight current word
    'lewis6991/gitsigns.nvim',             -- visual git integration
+
+   {'RRethy/vim-illuminate', config = function()
+      require('illuminate').configure({
+         delay = 10,
+         under_cursor = false,
+      })
+   end },               -- passive highlight current word
 
    {'lukas-reineke/indent-blankline.nvim', config = function()
       require("ibl").setup()
