@@ -38,6 +38,15 @@ function format_buffer()
    vim.cmd("silent!" .. fmt)
 end
 
+
+function set_upstream()
+   local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
+   branch = string.gsub(branch, "\n", "")
+
+   vim.cmd("silent! git branch --set-upstream-to=origin/" .. branch)
+   print("origin/" .. branch)
+end
+
 require('which-key').setup {
    triggers = {
       { "<auto>", mode = "nxsot" },
@@ -87,6 +96,7 @@ require('which-key').add({
    {"<leader>gU", ":Git reset HEAD~1<CR>", desc = 'undo'},
    {"<leader>gg", ":Git<CR>", desc = 'info'},
    {"<leader>gl", ":Git log --oneline --graph<CR>", desc = 'log'},
+   {"<leader>g^", ":lua set_upstream()<CR>", desc = 'set upstream'},
 
 
    -- Buffers
