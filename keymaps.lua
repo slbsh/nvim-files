@@ -108,8 +108,6 @@ require('which-key').add({
    {"<leader>gA", ":Gitsigns stage_buffer<CR>", desc = 'stage buffer'},
    {"<leader>gR", ":Gitsigns reset_buffer<CR>", desc = 'reset buffer'},
    {"<leader>gi", ":Git init<CR>", desc = 'init'},
-   {"<leader>gc", ":Git commit<CR>", desc = 'commit'},
-   {"<leader>gC", ":Git commit --amend<CR>", desc = 'commit amend'},
    {"<leader>gs", ":Git restore --staged %<CR>", desc = 'restore staged'},
    {"<leader>gS", ":Git restore %<CR>", desc = 'restore'},
    {"<leader>gf", ":Git fetch<CR>", desc = 'fetch'},
@@ -118,7 +116,12 @@ require('which-key').add({
    {"<leader>gg", ":Git<CR>", desc = 'info'},
    {"<leader>gL", ":Git log --oneline --graph<CR>", desc = 'log'},
    {"<leader>g^", ":lua set_upstream()<CR>", desc = 'set upstream'},
-   {"<leader>g@", ":lua change_branch()<CR>", desc = 'checkout'},
+   {"<leader>gC", ":lua change_branch()<CR>", desc = 'checkout'},
+
+   {"<leader>gc", group = 'Commit'},
+   {"<leader>gcc", ":Git commit<CR>", desc = 'commit'},
+   {"<leader>gca", ":Git commit -a<CR>", desc = 'commit all'},
+   {"<leader>gcA", ":Git commit --amend<CR>", desc = 'commit amend'},
 
    {"<leader>gp", group = 'Push'},
    {"<leader>gpp", ":Git push<CR>", desc = 'push'},
@@ -152,6 +155,7 @@ require('which-key').add({
    {"<leader>fr", ':Telescope oldfiles<CR>', desc = 'recent'},
    {"<leader>fg", ':Telescope live_grep<CR>', desc = 'grep'},
    {"<leader>ff", ':Telescope find_files<CR>', desc = 'find'},
+   {"<leader>fc", ':Telescope command_history<CR>', desc = 'commands'},
 
 
    -- Files
