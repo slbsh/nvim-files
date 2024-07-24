@@ -18,8 +18,6 @@ end
 
 
 
-
-
 -- Formatting
 local formatters = {
    [".rs"] = 'cargo fmt',
@@ -38,7 +36,6 @@ function format_buffer()
 
    vim.cmd("silent!" .. fmt)
 end
-
 
 
 -- Git
@@ -110,20 +107,31 @@ require('which-key').add({
    {"<leader>gu", ":Gitsigns undo_stage_hunk<CR>", desc = "unstage hunk"},
    {"<leader>gA", ":Gitsigns stage_buffer<CR>", desc = 'stage buffer'},
    {"<leader>gR", ":Gitsigns reset_buffer<CR>", desc = 'reset buffer'},
+   {"<leader>gi", ":Git init<CR>", desc = 'init'},
    {"<leader>gc", ":Git commit<CR>", desc = 'commit'},
    {"<leader>gC", ":Git commit --amend<CR>", desc = 'commit amend'},
    {"<leader>gs", ":Git restore --staged %<CR>", desc = 'restore staged'},
    {"<leader>gS", ":Git restore %<CR>", desc = 'restore'},
    {"<leader>gf", ":Git fetch<CR>", desc = 'fetch'},
-   {"<leader>gp", ":Git push<CR>", desc = 'push'},
-   {"<leader>gP", ":Git push --force-with-lease<CR>", desc = 'push force'},
-   {"<leader>gL", ":Git pull<CR>", desc = 'pull'},
    {"<leader>g.", ":Git add .<CR>", desc = 'add all'},
    {"<leader>gU", ":Git reset HEAD~1<CR>", desc = 'undo'},
    {"<leader>gg", ":Git<CR>", desc = 'info'},
-   {"<leader>gl", ":Git log --oneline --graph<CR>", desc = 'log'},
+   {"<leader>gL", ":Git log --oneline --graph<CR>", desc = 'log'},
    {"<leader>g^", ":lua set_upstream()<CR>", desc = 'set upstream'},
    {"<leader>g@", ":lua change_branch()<CR>", desc = 'checkout'},
+
+   {"<leader>gp", group = 'Push'},
+   {"<leader>gpp", ":Git push<CR>", desc = 'push'},
+   {"<leader>gpf", ":Git push --force-with-lease<CR>", desc = 'push force (lease)'},
+   {"<leader>gpF", ":Git push --force<CR>", desc = 'push force'},
+
+   {"<leader>gl", group = 'Pull'},
+   {"<leader>gll", ":Git pull<CR>", desc = 'pull'},
+   {"<leader>glL", ":Git fetch<CR>:Git pull<CR>", desc = 'fetch pull'},
+   {"<leader>glr", ":Git pull --rebase<CR>", desc = 'pull rebase'},
+   {"<leader>gln", ":Git pull --no-rebase<CR>", desc = 'pull merge'},
+   {"<leader>glf", ":Git pull --ff-only<CR>", desc = 'pull fast-forward'},
+
 
 
    -- Buffers
@@ -142,7 +150,7 @@ require('which-key').add({
    {"<leader>f", group = "Files"},
    {"<leader>ft", ':Xplr %:p:h<CR>', desc = 'Xplr'},
    {"<leader>fr", ':Telescope oldfiles<CR>', desc = 'recent'},
-   {"<leader>fw", ':Telescope live_grep<CR>', desc = 'grep'},
+   {"<leader>fg", ':Telescope live_grep<CR>', desc = 'grep'},
    {"<leader>ff", ':Telescope find_files<CR>', desc = 'find'},
 
 

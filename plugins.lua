@@ -13,8 +13,7 @@ local cmd = require('pckr.loader.cmd')
 require('pckr').add({
    'nvim-lua/plenary.nvim',     -- library
 
-
-
+   --
    -- Completion
    'hrsh7th/nvim-cmp',          -- Completion Engine
    'hrsh7th/cmp-buffer',        -- .. from buffer
@@ -23,14 +22,20 @@ require('pckr').add({
    'hrsh7th/cmp-calc',          -- .. as a calculator
    'f3fora/cmp-spell',          -- .. from spell check
    'max397574/cmp-greek',       -- .. for greek characters
+   {'github/copilot.vim', config = function() 
+      vim.g.copilot_filetypes = { ["*"] = true }
+      vim.keymap.set('i', "\\", 'copilot#Accept("\\\\")', { expr = true, replace_keycodes = false })
+      vim.keymap.set('i', "<M-\\>", '\\', {})
+      vim.g.copilot_no_tab_map = true
+   end },
 
 
 
    --
    -- File Managment / Navigation
-   {'nvim-telescope/telescope.nvim', cond = cmd('Telescope'), config = __telescope}, -- Fuzzy find files
-   {'is0n/fm-nvim',                  cond = cmd('Xplr')},                            -- Used for the File Manager `xplr`
-   {'tpope/vim-fugitive',            cond = cmd('Git')},                             -- Git integration
+   {'nvim-telescope/telescope.nvim', config = __telescope}, -- Fuzzy find files
+   {'is0n/fm-nvim',                  cond = cmd('Xplr')},   -- Used for the File Manager `xplr`
+   {'tpope/vim-fugitive',            cond = cmd('Git')},    -- Git integration
    { 'nvim-telescope/telescope-fzf-native.nvim', 
       run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
       cond = cmd('Telescope')
@@ -46,7 +51,7 @@ require('pckr').add({
 
    {'VidocqH/auto-indent.nvim', config = function()
       require("auto-indent").setup()
-   end },      -- auto indent when pressing tab
+   end }, -- auto indent when pressing tab
 
    {'Saecki/crates.nvim', config = function()
       require('crates').setup()
@@ -71,7 +76,7 @@ require('pckr').add({
          delay = 10,
          under_cursor = false,
       })
-   end },               -- passive highlight current word
+   end }, -- passive highlight current word
 
    {'lukas-reineke/indent-blankline.nvim', config = function()
       require("ibl").setup()
@@ -79,5 +84,5 @@ require('pckr').add({
 
    {'mawkler/modicator.nvim', config = function()
       require("modicator").setup()
-   end },
+   end }, -- indicate current mode near cursor
 })
