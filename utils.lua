@@ -38,9 +38,9 @@ function _clippy_toggle()
    clippy:toggle()
 end
 
-local ncmpcpp = Terminal:new({ cmd = 'ncmpcpp'})
-function _ncmpcpp_toggle()
-   ncmpcpp:toggle()
+local vimpc = Terminal:new({ cmd = 'vimpc'})
+function _vimpc_toggle()
+   vimpc:toggle()
 end
 
 local wikitui = Terminal:new({ cmd = 'wiki-tui'})
@@ -57,6 +57,12 @@ local glow = Terminal:new({ cmd = 'glow'})
 function _glow_toggle()
    glow:toggle()
 end
+
+local fish = Terminal:new({ cmd = 'fish'})
+function _fish_toggle()
+   fish:toggle()
+end
+
 
 
 -- Man

@@ -17,7 +17,8 @@ local UI_BG =        "#3d2e2d" -- sidebar
 
 local Gray =         "#806e6e" -- comments
 
-local Orange =       "#e3a30c" -- keyword
+local OrangeLight =  "#e3a30c" -- keyword
+local Orange =       "#d48600"
 local OrangeDark =   "#d97a0e"
 
 local Green =        "#8aad38"
@@ -34,7 +35,7 @@ local Menus =        "#422f24" -- "#4f3524"
 local Bar =          "#794b44" -- statusline
 local Warn =         "#ef2907"
 
-local fg2 =       "#c3ac90" -- line numbers
+local fg2 =          "#c3ac90" -- line numbers
 
 -- the stuff
 hi('Normal',         { fg = YellowLight, bg = BG                                  })
@@ -61,7 +62,7 @@ hi('TabLineSel',     {                                bold = true               
 hi('Pmenu',          { fg = YellowLight, bg = BG                                  })
 hi('PmenuSel',       {                   bg = Bar                                 })
 
-hi('IncSearch',      { fg = BG,          bg = Orange                              })
+hi('IncSearch',      { fg = BG,          bg = OrangeLight,                        })
 hi('Search',         {                                underline = true            })
 hi('Directory',      { fg = Red                                                   })
 hi('Folded',         { fg = "#a18e77",   bg = BG                                  })
@@ -94,23 +95,23 @@ hi('FloatFooter',    { link = 'Title'                                           
 hi('Boolean',        { fg = Red                                                   })
 hi('Character',      { fg = Red                                                   })
 hi('Comment',        { fg = Gray                                                  })
-hi('Conditional',    { fg = Orange                                                })
+hi('Conditional',    { fg = OrangeLight,                                          })
 hi('Constant',       { fg = Red                                                   })
 hi('Float',          { fg = Red                                                   })
 hi('Function',       { fg = RedDark                                               })
 hi('Identifier',     { fg = YellowLight                                           })
-hi('Keyword',        { fg = Orange,                   bold = true                 })
-hi('Label',          { fg = "#d48600"                                             })
-hi('Define',         { fg = Orange                                                })
+hi('Keyword',        { fg = OrangeLight,               bold = true                })
+hi('Label',          { fg = Orange,                                               })
+hi('Define',         { fg = OrangeLight,                                          })
 hi('Number',         { fg = Red                                                   })
-hi('Operator',       { fg = Orange                                                })
-hi('PreProc',        { fg = Orange                                                })
+hi('Operator',       { fg = OrangeLight,                                          })
+hi('PreProc',        { fg = OrangeLight,                                          })
 hi('Special',        { fg = YellowLight                                           })
 hi('SpecialKey',     { fg = fg2,         bg = UI_BG                               })
-hi('Statement',      { fg = Orange                                                })
+hi('Statement',      { fg = OrangeLight,                                          })
 hi('StorageClass',   { fg = OrangeDark,               italic = true               })
 hi('String',         { fg = GreenDark                                             })
-hi('Tag',            { fg = Orange                                                })
+hi('Tag',            { fg = OrangeLight,                                          })
 hi('Type',           { fg = OrangeDark                                            })
 hi('Repeat',         { link = 'Statement'                                         })
 hi('Exception',      { link = 'Statement'                                         })
@@ -141,7 +142,7 @@ hi('GitSignsStagedChange',{ fg = YellowBright,bg = Menus, bold = true           
 
 -- spell
 hi('SpellBad',       { sp = Red,                      undercurl = true            })
-hi('SpellCap',       { sp = Orange,                   undercurl = true            })
+hi('SpellCap',       { sp = OrangeLight,              undercurl = true            })
 hi('SpellLocal',     { sp = OrangeDark,               undercurl = true            })
 hi('SpellRare',      { sp = Gray,                     undercurl = true            })
 

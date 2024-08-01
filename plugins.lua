@@ -41,17 +41,34 @@ require('pckr').add({
       cond = cmd('Telescope')
    },
 
-
-
    --
    -- Utils
    'folke/which-key.nvim',          -- Keybind hints
    'mg979/vim-visual-multi',        -- Multi cursor support
    'akinsho/toggleterm.nvim',       -- Floating terminal
+   {'fedepujol/move.nvim', config = function() 
+      require('move').setup({
+         char = { enable = true, },
+      })
 
-   {'VidocqH/auto-indent.nvim', config = function()
-      require("auto-indent").setup()
-   end }, -- auto indent when pressing tab
+      local opts = { noremap = true, silent = true }
+      -- Normal-mode commands
+      vim.keymap.set('n', '<C-j>', ':MoveLine(1)<CR>', opts)
+      vim.keymap.set('n', '<C-k>', ':MoveLine(-1)<CR>', opts)
+      vim.keymap.set('n', '<C-h>', ':MoveHChar(-1)<CR>', opts)
+      vim.keymap.set('n', '<C-l>', ':MoveHChar(1)<CR>', opts)
+      -- vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
+      -- vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
+      -- Visual-mode commands
+      vim.keymap.set('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
+      vim.keymap.set('v', '<C-k>', ':MoveBlock(-1)<CR>', opts)
+      vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
+      vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
+   end },
+
+   -- {'VidocqH/auto-indent.nvim', config = function()
+   --    require("auto-indent").setup()
+   -- end }, -- auto indent when pressing tab
 
    {'Saecki/crates.nvim', config = function()
       require('crates').setup()
