@@ -25,7 +25,7 @@ cmp.setup({
    sources = {
       { name = 'crates' },
       { name = 'calc' },
-      { name = 'greek' },
+      { name = 'ext' },
       { name = 'path' }, 
       { name = 'buffer' },
       { name = 'spell' },

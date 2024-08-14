@@ -21,7 +21,6 @@ require('pckr').add({
    'hrsh7th/cmp-cmdline',       -- .. from command line
    'hrsh7th/cmp-calc',          -- .. as a calculator
    'f3fora/cmp-spell',          -- .. from spell check
-   'max397574/cmp-greek',       -- .. for greek characters
    {'github/copilot.vim', config = function() 
       vim.g.copilot_filetypes = { ["*"] = true }
       vim.keymap.set('i', "\\", 'copilot#Accept("\\\\")', { expr = true, replace_keycodes = false })
@@ -65,10 +64,6 @@ require('pckr').add({
       vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
       vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
    end },
-
-   -- {'VidocqH/auto-indent.nvim', config = function()
-   --    require("auto-indent").setup()
-   -- end }, -- auto indent when pressing tab
 
    {'Saecki/crates.nvim', config = function()
       require('crates').setup()

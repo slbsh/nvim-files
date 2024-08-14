@@ -153,10 +153,10 @@ require('which-key').add({
    {"<leader>g*d", ":Git remote remove ",  desc = 'remove remote'},
    {"<leader>g*u", ":Git remote update<CR>", desc = 'update remote'},
 
-   {"<leader>g!", group = 'Cherry Pick'},
-   {"<leader>g!c", ":Git cherry-pick ", desc = 'cherry-pick'},
-   {"<leader>g!a", ":Git cherry-pick --abort<CR>", desc = 'abort'},
-   {"<leader>g!c", ":Git cherry-pick --continue<CR>", desc = 'continue'},
+   {"<leader>g&", group = 'Cherry Pick'},
+   {"<leader>g&c", ":Git cherry-pick ", desc = 'cherry-pick'},
+   {"<leader>g&a", ":Git cherry-pick --abort<CR>", desc = 'abort'},
+   {"<leader>g&c", ":Git cherry-pick --continue<CR>", desc = 'continue'},
 
 
 
@@ -180,6 +180,9 @@ require('which-key').add({
    {"<leader>ff", ':Telescope find_files<CR>',      desc = 'find'},
    {"<leader>fc", ':Telescope command_history<CR>', desc = 'commands'},
 
+   -- Operations
+   {"<leader>o", group = "Operations"},
+   {"<leader>of", ":'<,'>!fold -w 100 -s", desc = "fold"},
 
    -- Files
    {"<leader>a", group = "Applications"},

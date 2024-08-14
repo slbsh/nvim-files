@@ -23,6 +23,7 @@ vim.opt.laststatus   = 0
 vim.opt.showcmd      = false
 vim.opt.timeoutlen   = 700
 vim.opt.list         = true
+vim.opt.mouse        = ""
 
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
@@ -41,7 +42,7 @@ vim.cmd('colorscheme rust')
 local imports = {
    "plugins.lua", "completions.lua", "appearance.lua",
    "utils.lua", "bettercomments.lua", "command.lua",
-   "keymaps.lua",
+   "keymaps.lua", "cmp-ext.lua",
 }
 
 local HOME = os.getenv("HOME")
