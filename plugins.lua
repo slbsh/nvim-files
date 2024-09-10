@@ -66,7 +66,17 @@ require('pckr').add({
    end },
 
    {'Saecki/crates.nvim', config = function()
-      require('crates').setup()
+      require('crates').setup {
+         completion = { 
+            crates = { 
+               enabled = true,
+               max_results = 8,
+               min_chars = 3,
+            },
+            cmp = { enabled = true } 
+         },
+         popup = { autofocus = true, },
+      }
    end }, -- Crates.io integration
 
    {'numToStr/Comment.nvim', config = function()
@@ -97,4 +107,19 @@ require('pckr').add({
    {'mawkler/modicator.nvim', config = function()
       require("modicator").setup()
    end }, -- indicate current mode near cursor
+
+   {'nvim-treesitter/nvim-treesitter', config = function()
+      require('nvim-treesitter.configs').setup({
+         ensure_installed = { "c", "cpp", "rust", "lua", "markdown", "markdown_inline", "toml", "bash" },
+         -- auto_install = true,
+
+         highlight = { 
+            enable = true,
+            disable = { "rust" },
+         },
+         indent = { enable = true },
+         -- autotag = { enable = true },
+         -- context_commentstring = { enable = true },
+      })
+   end }, -- syntax highlighting
 })

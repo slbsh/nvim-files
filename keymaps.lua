@@ -199,6 +199,8 @@ require('which-key').add({
 
    -- Crates
    {"<leader>C", group = "Crates"},
+   {"<leader>Cr", c.reload,                  desc = 'reload'},
+   {"<leader>CC", c.show_popup,              desc = 'info'},
    {"<leader>Cv", c.show_versions_popup,     desc = 'version'},
    {"<leader>Cf", c.show_features_popup,     desc = 'features'},
    {"<leader>Cd", c.show_dependencies_popup, desc = 'dependencies'},
