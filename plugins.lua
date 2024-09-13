@@ -15,12 +15,13 @@ require('pckr').add({
 
    --
    -- Completion
-   'hrsh7th/nvim-cmp',          -- Completion Engine
-   'hrsh7th/cmp-buffer',        -- .. from buffer
-   'hrsh7th/cmp-path',          -- .. from file path
-   'hrsh7th/cmp-cmdline',       -- .. from command line
-   'hrsh7th/cmp-calc',          -- .. as a calculator
-   'f3fora/cmp-spell',          -- .. from spell check
+   'hrsh7th/nvim-cmp',    -- Completion Engine
+   'hrsh7th/cmp-buffer',  -- .. from buffer
+   'hrsh7th/cmp-path',    -- .. from file path
+   'hrsh7th/cmp-cmdline', -- .. from command line
+   'hrsh7th/cmp-calc',    -- .. as a calculator
+   'f3fora/cmp-spell',    -- .. from spell check
+   'petertriho/cmp-git',  -- .. from git
    {'github/copilot.vim', config = function() 
       vim.g.copilot_filetypes = { ["*"] = true }
       vim.keymap.set('i', "\\", 'copilot#Accept("\\\\")', { expr = true, replace_keycodes = false })
@@ -28,13 +29,12 @@ require('pckr').add({
       vim.g.copilot_no_tab_map = true
    end },
 
-
-
    --
    -- File Managment / Navigation
-   {'nvim-telescope/telescope.nvim', config = __telescope}, -- Fuzzy find files
    {'is0n/fm-nvim',                  cond = cmd('Xplr')},   -- Used for the File Manager `xplr`
    {'tpope/vim-fugitive',            cond = cmd('Git')},    -- Git integration
+   'nvim-telescope/telescope.nvim', -- Fuzzy find files
+
    { 'nvim-telescope/telescope-fzf-native.nvim', 
       run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
       cond = cmd('Telescope')
@@ -42,28 +42,23 @@ require('pckr').add({
 
    --
    -- Utils
-   'folke/which-key.nvim',          -- Keybind hints
-   'mg979/vim-visual-multi',        -- Multi cursor support
-   'akinsho/toggleterm.nvim',       -- Floating terminal
-   {'fedepujol/move.nvim', config = function() 
-      require('move').setup({
-         char = { enable = true, },
-      })
-
-      local opts = { noremap = true, silent = true }
-      -- Normal-mode commands
-      vim.keymap.set('n', '<C-j>', ':MoveLine(1)<CR>', opts)
-      vim.keymap.set('n', '<C-k>', ':MoveLine(-1)<CR>', opts)
-      vim.keymap.set('n', '<C-h>', ':MoveHChar(-1)<CR>', opts)
-      vim.keymap.set('n', '<C-l>', ':MoveHChar(1)<CR>', opts)
-      -- vim.keymap.set('n', '<leader>wf', ':MoveWord(1)<CR>', opts)
-      -- vim.keymap.set('n', '<leader>wb', ':MoveWord(-1)<CR>', opts)
-      -- Visual-mode commands
-      vim.keymap.set('v', '<C-j>', ':MoveBlock(1)<CR>', opts)
-      vim.keymap.set('v', '<C-k>', ':MoveBlock(-1)<CR>', opts)
-      vim.keymap.set('v', '<C-h>', ':MoveHBlock(-1)<CR>', opts)
-      vim.keymap.set('v', '<C-l>', ':MoveHBlock(1)<CR>', opts)
-   end },
+   'folke/which-key.nvim',    -- Keybind hints
+   'mg979/vim-visual-multi',  -- Multi cursor support
+   {'akinsho/toggleterm.nvim', config = function() 
+      require('toggleterm').setup{
+         size = 20,
+         open_mapping = [[<c-\>]],
+         shade_filetypes = {},
+         shade_terminals = true,
+         shading_factor = '1',
+         start_in_insert = true,
+         direction = 'float',
+         close_on_exit = true,
+         auto_scroll   = true,
+         hidden = true,
+         shell = vim.o.shell,
+      }
+   end }, -- Floating terminal
 
    {'Saecki/crates.nvim', config = function()
       require('crates').setup {
@@ -84,15 +79,12 @@ require('pckr').add({
       require('Comment.ft').hjson = '#%s'
    end }, -- Commenting code
 
-
-
    --
    -- Appearance
-   'nvim-lualine/lualine.nvim',           -- status line
-   'nvim-tree/nvim-web-devicons',         -- icons library
-   'psliwka/vim-smoothie',                -- smooth scrolling
-   'lewis6991/gitsigns.nvim',             -- visual git integration
-
+   'nvim-lualine/lualine.nvim',   -- status line
+   'nvim-tree/nvim-web-devicons', -- icons library
+   'psliwka/vim-smoothie',        -- smooth scrolling
+   'lewis6991/gitsigns.nvim',     -- visual git integration
    {'RRethy/vim-illuminate', config = function()
       require('illuminate').configure({
          delay = 10,
@@ -104,22 +96,22 @@ require('pckr').add({
       require("ibl").setup()
    end }, -- ghost characters for spaces, tabs, and newlines
 
-   {'mawkler/modicator.nvim', config = function()
-      require("modicator").setup()
-   end }, -- indicate current mode near cursor
+   -- {'mawkler/modicator.nvim', config = function()
+   --    require("modicator").setup()
+   -- end }, -- indicate current mode near cursor
 
    {'nvim-treesitter/nvim-treesitter', config = function()
       require('nvim-treesitter.configs').setup({
-         ensure_installed = { "c", "cpp", "rust", "lua", "markdown", "markdown_inline", "toml", "bash" },
-         -- auto_install = true,
+         ensure_installed = { 
+            "c", "cpp", "rust", "lua", "markdown",
+            "markdown_inline", "toml", "bash", "clojure",
+         },
 
          highlight = { 
             enable = true,
             disable = { "rust" },
          },
          indent = { enable = true },
-         -- autotag = { enable = true },
-         -- context_commentstring = { enable = true },
       })
    end }, -- syntax highlighting
 })

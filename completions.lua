@@ -23,6 +23,7 @@ cmp.setup({
    }),
 
    sources = {
+      { name = 'git' },
       { name = 'crates' },
       { name = 'calc' },
       { name = 'ext' },
@@ -54,5 +55,3 @@ cmp.setup.cmdline(':', {
       { name = 'cmdline'}
    })
 })
-
-

@@ -112,7 +112,6 @@ source.items = function()
 
       prime     = "′", integral = "∫",
 
-
       -- APL
       _conj_plus = "+", _neg_minus = "−",
       _dir_mul   = "×", _recip_div = "÷",
@@ -127,6 +126,11 @@ source.items = function()
       _eq        = "=", _geq       = "≥",
       _greater   = ">", _neq       = "≠",
 
+      -- Emoji
+      rocket     = "🚀", eyes      = "👀",
+      heart      = "❤️",  thumbsup  = "👍",
+      skull      = "💀", beg       = "🥺👉👈",
+      vomit      = "🤮", hundered  = "💯",
    }
 
    local items = {}

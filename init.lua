@@ -23,7 +23,7 @@ vim.opt.laststatus   = 0
 vim.opt.showcmd      = false
 vim.opt.timeoutlen   = 700
 vim.opt.list         = true
-vim.opt.mouse        = ""
+-- vim.opt.mouse        = ""
 
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"

@@ -17,26 +17,6 @@ function toggle_spell()
 end
 
 
-
--- Formatting
-local formatters = {
-   [".rs"] = 'cargo fmt',
-}
-
-function format_buffer()
-   local current_file = vim.api.nvim_buf_get_name(0)
-   local extension = current_file:match("^.+(%..+)$")
-
-   local fmt = formatters[extension]
-   
-   if not fmt then
-      print("No formatter configured.")
-      return
-   end
-
-   vim.cmd("silent!" .. fmt)
-end
-
 -- Git
 function set_upstream()
    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
@@ -123,12 +103,14 @@ require('which-key').add({
    {"<leader>gTs", ":Git stash<CR>",      desc = 'stash'},
    {"<leader>gTp", ":Git stash pop<CR>",  desc = 'pop'},
    {"<leader>gTd", ":Git stash drop<CR>", desc = 'drop'},
-
    {"<leader>gTl", ":Git stash list<CR>", desc = 'list'},
+
    {"<leader>gr", group = 'Rebase'},
    {"<leader>grc", ":Git rebase --continue<CR>", desc = 'continue'},
    {"<leader>gra", ":Git rebase --abort<CR>",    desc = 'abort'},
    {"<leader>grs", ":Git rebase --skip<CR>",     desc = 'skip'},
+   {"<leader>grr", ":Git reset HEAD^ %:p<CR>",   desc = 'go back'},
+   {"<leader>grR", ":Git reset HEAD^ .<CR>",     desc = 'go back all'},
 
    {"<leader>gc", group = 'Commit'},
    {"<leader>gcc", ":Git commit<CR>",         desc = 'commit'},
@@ -162,14 +144,13 @@ require('which-key').add({
 
    -- Buffers
    {"<leader>b", group = "Buffers"},
-   {"<leader>br", ':Telescope buffers<CR>', desc = 'current'},
+   {"<leader>bf", ':Telescope buffers<CR>', desc = 'telescope'},
    {"<leader>bn", ':bn<CR>',                desc = 'next'},
    {"<leader>bN", ':enew<CR>',              desc = 'new'},
    {"<leader>bp", ':bp<CR>',                desc = 'previous'},
    {"<leader>bd", ':bd<CR>',                desc = 'delete'},
    {"<leader>bD", ':bd!<CR>',               desc = 'force delete'},
    {"<leader>bw", ':wa!<CR>',               desc = 'write all'}, 
-   {"<leader>bf", format_buffer,            desc = 'format buffer'},
 
 
    -- Files
@@ -204,6 +185,7 @@ require('which-key').add({
    {"<leader>Cv", c.show_versions_popup,     desc = 'version'},
    {"<leader>Cf", c.show_features_popup,     desc = 'features'},
    {"<leader>Cd", c.show_dependencies_popup, desc = 'dependencies'},
+   {"<leader>CD", c.open_documentation,      desc = 'docs'},
    {"<leader>Cu", c.upgrade_crate,           desc = 'update'},
    {"<leader>CU", c.upgrade_all_crates,      desc = 'update all'},
 })

@@ -15,22 +15,6 @@ function __telescope()
 end
 
 
--- terminal stuff
-require('toggleterm').setup{
-   size = 20,
-   open_mapping = [[<c-\>]],
-   shade_filetypes = {},
-   shade_terminals = true,
-   shading_factor = '1',
-   start_in_insert = true,
-   direction = 'float',
-   close_on_exit = true,
-   auto_scroll   = true,
-   hidden = true,
-   shell = vim.o.shell,
-}
-
-
 local Terminal = require('toggleterm.terminal').Terminal
 
 local clippy = Terminal:new({ cmd = 'bacon clippy' })
