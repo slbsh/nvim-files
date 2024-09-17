@@ -161,9 +161,27 @@ require('which-key').add({
    {"<leader>ff", ':Telescope find_files<CR>',      desc = 'find'},
    {"<leader>fc", ':Telescope command_history<CR>', desc = 'commands'},
 
+
    -- Operations
    {"<leader>o", group = "Operations"},
-   {"<leader>of", ":'<,'>!fold -w 100 -s", desc = "fold"},
+   {"<leader>of", ":'<,'>!fold -w 100 -s<CR>", desc = "fold"},
+
+
+   -- Eval
+   {"<leader>e", group = "Eval"},
+   {"<leader>er", ":Run NO_COLOR=1 irust<CR>",       desc = "rust"},
+   {"<leader>ej", ":Run clj -M -<CR>",    desc = "clojure"},
+   {"<leader>ec", ":Run ceval<CR>",       desc = "c"},
+   {"<leader>eh", ":Run sh<CR>",          desc = "shell"},
+   {"<leader>ee", ":Run eva<CR>",         desc = "eva"},
+
+   {"<leader>E", group = "Buf Eval"},
+   {"<leader>Er", ":RunBuf NO_COLOR=1 irust<CR>",    desc = "rust"},
+   {"<leader>Ej", ":RunBuf clj -M -<CR>", desc = "clojure"},
+   {"<leader>Ec", ":RunBuf ceval<CR>",    desc = "c"},
+   {"<leader>Eh", ":RunBuf sh<CR>",       desc = "shell"},
+   {"<leader>Ee", ":RunBuf eva<CR>",      desc = "eva"},
+
 
    -- Files
    {"<leader>a", group = "Applications"},

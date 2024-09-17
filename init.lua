@@ -42,7 +42,7 @@ vim.cmd('colorscheme rust')
 local imports = {
    "plugins.lua", "completions.lua", "appearance.lua",
    "utils.lua", "bettercomments.lua", "command.lua",
-   "keymaps.lua", "cmp-ext.lua",
+   "keymaps.lua", "cmp-ext.lua", "run.lua",
 }
 
 local HOME = os.getenv("HOME")

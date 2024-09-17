@@ -1,0 +1,11 @@
+vim.api.nvim_create_user_command("Run", function(opts)
+    local content = table.concat(vim.fn.getline(opts.line1, opts.line2), "\n")
+    local result = vim.fn.systemlist(opts.args, content)
+    vim.fn.append(opts.line2, result)
+end, { nargs = 1, range = true })
+
+vim.api.nvim_create_user_command("RunBuf", function(opts)
+   local content = table.concat(vim.fn.getbufline("%", 1, "$"), "\n")
+   local result = vim.fn.systemlist(opts.args, content)
+   vim.fn.append(vim.fn.line("$"), result)
+end, { nargs = 1 })
