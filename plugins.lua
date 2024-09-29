@@ -3,25 +3,22 @@ local pckr_path = vim.fn.stdpath("data") .. "/pckr/pckr.nvim"
 
 if not vim.uv.fs_stat(pckr_path) then
    vim.fn.system({ 'git', 'clone', "--filter=blob:none",
-      'https://github.com/lewis6991/pckr.nvim',
-      pckr_path
+      'https://github.com/lewis6991/pckr.nvim', pckr_path
    })
 end
 vim.opt.rtp:prepend(pckr_path)
 
 local cmd = require('pckr.loader.cmd')
 require('pckr').add({
-   'nvim-lua/plenary.nvim',     -- library
-
-   --
    -- Completion
-   'hrsh7th/nvim-cmp',    -- Completion Engine
-   'hrsh7th/cmp-buffer',  -- .. from buffer
-   'hrsh7th/cmp-path',    -- .. from file path
-   'hrsh7th/cmp-cmdline', -- .. from command line
-   'hrsh7th/cmp-calc',    -- .. as a calculator
-   'f3fora/cmp-spell',    -- .. from spell check
-   'petertriho/cmp-git',  -- .. from git
+   {'hrsh7th/nvim-cmp', requires = {
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/cmp-calc',
+      'f3fora/cmp-spell',
+      'petertriho/cmp-git',
+   }},-- Completion
    {'github/copilot.vim', config = function() 
       vim.g.copilot_filetypes = { ["*"] = true }
       vim.keymap.set('i', "\\", 'copilot#Accept("\\\\")', { expr = true, replace_keycodes = false })
@@ -33,11 +30,20 @@ require('pckr').add({
    -- File Managment / Navigation
    {'is0n/fm-nvim',                  cond = cmd('Xplr')},   -- Used for the File Manager `xplr`
    {'tpope/vim-fugitive',            cond = cmd('Git')},    -- Git integration
-   'nvim-telescope/telescope.nvim', -- Fuzzy find files
+   {'nvim-telescope/telescope.nvim', 
+      config = function() require('telescope').setup() end,
+      cond = cmd('Telescope'),
+      requires = { 'nvim-lua/plenary.nvim' }
+   }, -- Fuzzy find files
 
-   { 'nvim-telescope/telescope-fzf-native.nvim', 
-      run = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build',
-      cond = cmd('Telescope')
+   {'pwntester/octo.nvim', 
+      config = function() require('octo').setup() end,
+      cond = cmd('Octo'),
+      requires = { 
+         'nvim-lua/plenary.nvim',
+         'nvim-tree/nvim-web-devicons',
+         'nvim-telescope/telescope.nvim'
+      }
    },
 
    --
@@ -81,10 +87,12 @@ require('pckr').add({
 
    --
    -- Appearance
-   'nvim-lualine/lualine.nvim',   -- status line
-   'nvim-tree/nvim-web-devicons', -- icons library
    'psliwka/vim-smoothie',        -- smooth scrolling
    'lewis6991/gitsigns.nvim',     -- visual git integration
+   {'nvim-lualine/lualine.nvim',
+      requires = { 'kyazdani42/nvim-web-devicons' },
+   },
+
    {'RRethy/vim-illuminate', config = function()
       require('illuminate').configure({
          delay = 10,
@@ -92,13 +100,13 @@ require('pckr').add({
       })
    end }, -- passive highlight current word
 
-   {'lukas-reineke/indent-blankline.nvim', config = function()
-      require("ibl").setup()
-   end }, -- ghost characters for spaces, tabs, and newlines
+   {'lukas-reineke/indent-blankline.nvim', 
+      config = function() require("ibl").setup() end 
+   }, -- ghost characters for spaces, tabs, and newlines
 
-   -- {'mawkler/modicator.nvim', config = function()
-   --    require("modicator").setup()
-   -- end }, -- indicate current mode near cursor
+   {'mawkler/modicator.nvim', 
+      config = function() require("modicator").setup() end
+   }, -- indicate current mode near cursor
 
    {'nvim-treesitter/nvim-treesitter', config = function()
       require('nvim-treesitter.configs').setup({
@@ -106,7 +114,6 @@ require('pckr').add({
             "c", "cpp", "rust", "lua", "markdown",
             "markdown_inline", "toml", "bash", "clojure",
          },
-
          highlight = { 
             enable = true,
             disable = { "rust" },

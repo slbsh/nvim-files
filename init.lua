@@ -39,13 +39,15 @@ vim.cmd('colorscheme rust')
 
 
 -- Imports
-local imports = {
-   "plugins.lua", "completions.lua", "appearance.lua",
-   "utils.lua", "bettercomments.lua", "command.lua",
-   "keymaps.lua", "cmp-ext.lua", "run.lua",
-}
-
 local HOME = os.getenv("HOME")
-for _, file in pairs(imports) do
-   vim.cmd(string.format('luafile %s/.config/nvim/%s', HOME, file))
+
+local files = vim.fn.systemlist(string.format('find %s/.config/nvim/ -maxdepth 1 -type f ! -name "init.lua"', HOME))
+for _, file in pairs(files) do
+   vim.cmd("luafile " .. file)
+end
+
+
+local files = vim.fn.systemlist(string.format('ls %s/.config/nvim/plugins/', HOME))
+for _, file in ipairs(files) do
+   vim.cmd(string.format("luafile %s/.config/nvim/plugins/%s", HOME, file))
 end

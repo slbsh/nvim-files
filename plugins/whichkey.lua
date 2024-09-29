@@ -1,3 +1,13 @@
+-- Util
+function prompt(prompt, cmd)
+   local input = vim.fn.input(prompt)
+   -- if input == nil or input == "" then
+   --    return
+   -- end
+
+   vim.api.nvim_command(cmd .. input)
+end
+
 -- Toggles
 function toggle_wrap()
   if vim.api.nvim_get_option("wrap") then
@@ -92,12 +102,12 @@ require('which-key').add({
    {"<leader>gC", ":Git checkout ",                          desc = 'checkout'},
    {"<leader>gd", ":Git diff<CR>",                           desc = 'diff'},
    {"<leader>gD", ":Git difftool<CR>",                       desc = 'diff tool'},
-   {"<leader>gF", ":Git add ",                               desc = 'add file'},
+   {"<leader>gF", ":lua prompt('Add: ', 'Git add ')",        desc = 'add file'},
    {"<leader>g#", ":Git reflog<CR>",                         desc = 'reflog'},
-   {"<leader>g@", ":Git show ",                              desc = 'show'},
+   {"<leader>g@", ":lua prompt('Show: ', 'Git show ')",      desc = 'show'},
    {"<leader>gh", ":Git help<CR>",                           desc = 'help'},
    {"<leader>g?", ":Git branch -v<CR>",                      desc = 'branch'},
-   {"<leader>gm", ":Git merge ",                             desc = "merge"},
+   {"<leader>gm", ":lua prompt('Merge: ', 'Git merge ')",    desc = "merge"},
 
    {"<leader>gT", group = 'Stash'},
    {"<leader>gTs", ":Git stash<CR>",      desc = 'stash'},
@@ -131,14 +141,21 @@ require('which-key').add({
 
    {"<leader>g*", group = 'Remote'},
    {"<leader>g*r", ":Git remote -v<CR>", desc = 'remote'},
-   {"<leader>g*a", ":Git remote add ",     desc = 'add remote'},
-   {"<leader>g*d", ":Git remote remove ",  desc = 'remove remote'},
+   {"<leader>g*a", ":lua prompt('URL: ', 'Git remote add ')", desc = 'add remote'},
+   {"<leader>g*d", ":lua prompt('URL: ', 'Git remote remove ')", desc = 'remove remote'},
    {"<leader>g*u", ":Git remote update<CR>", desc = 'update remote'},
 
-   {"<leader>g&", group = 'Cherry Pick'},
-   {"<leader>g&c", ":Git cherry-pick ", desc = 'cherry-pick'},
-   {"<leader>g&a", ":Git cherry-pick --abort<CR>", desc = 'abort'},
-   {"<leader>g&c", ":Git cherry-pick --continue<CR>", desc = 'continue'},
+
+
+   {"<leader>h", group = 'gh'},
+   {"<leader>a",  ":Octo actions<CR>", desc = 'actions'},
+   {"<leader>r", ":Octo repo list<CR>", desc = 'repos'},
+   {"<leader>hi", ":Octo issue list<CR>", desc = 'issues'},
+   {"<leader>hI", ":Octo issue search<CR>", desc = 'issues all'},
+   {"<leader>hp", ":Octo pr list<CR>", desc = 'prs'},
+   {"<leader>hP", ":Octo pr search<CR>", desc = 'prs all'},
+
+
 
 
 
