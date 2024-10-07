@@ -55,7 +55,6 @@ require('which-key').setup {
    },
 }
 
-local c = require("crates")
 require('which-key').add({
    mode = {"n", "v"},
    
@@ -215,12 +214,12 @@ require('which-key').add({
 
    -- Crates
    {"<leader>C", group = "Crates"},
-   {"<leader>Cr", c.reload,                  desc = 'reload'},
-   {"<leader>CC", c.show_popup,              desc = 'info'},
-   {"<leader>Cv", c.show_versions_popup,     desc = 'version'},
-   {"<leader>Cf", c.show_features_popup,     desc = 'features'},
-   {"<leader>Cd", c.show_dependencies_popup, desc = 'dependencies'},
-   {"<leader>CD", c.open_documentation,      desc = 'docs'},
-   {"<leader>Cu", c.upgrade_crate,           desc = 'update'},
-   {"<leader>CU", c.upgrade_all_crates,      desc = 'update all'},
+   {"<leader>Cr", ":lua require('crates').reload",                  desc = 'reload'},
+   {"<leader>CC", ":lua require('crates').show_popup",              desc = 'info'},
+   {"<leader>Cv", ":lua require('crates').show_versions_popup",     desc = 'version'},
+   {"<leader>Cf", ":lua require('crates').show_features_popup",     desc = 'features'},
+   {"<leader>Cd", ":lua require('crates').show_dependencies_popup", desc = 'dependencies'},
+   {"<leader>CD", ":lua require('crates').open_documentation",      desc = 'docs'},
+   {"<leader>Cu", ":lua require('crates').upgrade_crate",           desc = 'update'},
+   {"<leader>CU", ":lua require('crates').upgrade_all_crates",      desc = 'update all'},
 })

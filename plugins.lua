@@ -9,6 +9,7 @@ end
 vim.opt.rtp:prepend(pckr_path)
 
 local cmd = require('pckr.loader.cmd')
+local event = require('pckr.loader.event')
 require('pckr').add({
    -- Completion
    {'hrsh7th/nvim-cmp', requires = {
@@ -17,7 +18,6 @@ require('pckr').add({
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
       'f3fora/cmp-spell',
-      'petertriho/cmp-git',
    }},-- Completion
    {'github/copilot.vim', config = function() 
       vim.g.copilot_filetypes = { ["*"] = true }
@@ -66,19 +66,23 @@ require('pckr').add({
       }
    end }, -- Floating terminal
 
-   {'Saecki/crates.nvim', config = function()
-      require('crates').setup {
-         completion = { 
-            crates = { 
-               enabled = true,
-               max_results = 8,
-               min_chars = 3,
+   {'Saecki/crates.nvim', 
+      cond = event('BufReadPost', 'Cargo.toml'),
+      requires = { 'hrsh7th/nvim-cmp' },
+      config = function()
+         require('crates').setup {
+            completion = { 
+               crates = { 
+                  enabled = true,
+                  max_results = 8,
+                  min_chars = 3,
+               },
+               cmp = { enabled = true } 
             },
-            cmp = { enabled = true } 
-         },
-         popup = { autofocus = true, },
-      }
-   end }, -- Crates.io integration
+            popup = { autofocus = true, },
+         }
+      end,
+   }, -- Crates.io integration
 
    {'numToStr/Comment.nvim', config = function()
       require('Comment').setup()
@@ -103,10 +107,6 @@ require('pckr').add({
    {'lukas-reineke/indent-blankline.nvim', 
       config = function() require("ibl").setup() end 
    }, -- ghost characters for spaces, tabs, and newlines
-
-   {'mawkler/modicator.nvim', 
-      config = function() require("modicator").setup() end
-   }, -- indicate current mode near cursor
 
    {'nvim-treesitter/nvim-treesitter', config = function()
       require('nvim-treesitter.configs').setup({
