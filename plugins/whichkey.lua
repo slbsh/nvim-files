@@ -185,18 +185,22 @@ require('which-key').add({
 
    -- Eval
    {"<leader>e", group = "Eval"},
-   {"<leader>er", ":Run NO_COLOR=1 irust<CR>",       desc = "rust"},
-   {"<leader>ej", ":Run clj -M -<CR>",    desc = "clojure"},
-   {"<leader>ec", ":Run ceval<CR>",       desc = "c"},
-   {"<leader>eh", ":Run sh<CR>",          desc = "shell"},
-   {"<leader>ee", ":Run eva<CR>",         desc = "eva"},
+   {"<leader>er", ":Run irust -f 4<CR>",            desc = "rust"},
+   {"<leader>ej", ":Run clj -M -<CR>",         desc = "clojure"},
+   {"<leader>ec", ":Run ceval cc -x c<CR>",    desc = "c"},
+   {"<leader>eC", ":Run ceval c++ -x c++<CR>", desc = "cpp"},
+   {"<leader>ez", ":Run ceval zig run<CR>",    desc = "zig"},
+   {"<leader>eh", ":Run sh<CR>",               desc = "shell"},
+   {"<leader>ee", ":Run eva<CR>",              desc = "eva"},
 
    {"<leader>E", group = "Buf Eval"},
-   {"<leader>Er", ":RunBuf NO_COLOR=1 irust<CR>",    desc = "rust"},
-   {"<leader>Ej", ":RunBuf clj -M -<CR>", desc = "clojure"},
-   {"<leader>Ec", ":RunBuf ceval<CR>",    desc = "c"},
-   {"<leader>Eh", ":RunBuf sh<CR>",       desc = "shell"},
-   {"<leader>Ee", ":RunBuf eva<CR>",      desc = "eva"},
+   {"<leader>Er", ":RunBuf irust -f 4<CR>",            desc = "rust"},
+   {"<leader>Ej", ":RunBuf clj -M -<CR>",         desc = "clojure"},
+   {"<leader>Ec", ":RunBuf ceval cc -x c<CR>",    desc = "c"},
+   {"<leader>EC", ":RunBuf ceval c++ -x c++<CR>", desc = "cpp"},
+   {"<leader>Ez", ":RunBuf ceval zig run<CR>",    desc = "zig"},
+   {"<leader>Eh", ":RunBuf sh<CR>",               desc = "shell"},
+   {"<leader>Ee", ":RunBuf eva<CR>",              desc = "eva"},
 
 
    -- Files
