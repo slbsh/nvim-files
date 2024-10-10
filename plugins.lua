@@ -10,7 +10,10 @@ vim.opt.rtp:prepend(pckr_path)
 
 local cmd = require('pckr.loader.cmd')
 local event = require('pckr.loader.event')
+local keys = require('pckr.loader.keys')
 require('pckr').add({
+   "nvim-lua/plenary.nvim",
+
    -- Completion
    {'hrsh7th/nvim-cmp', requires = {
       'hrsh7th/cmp-buffer',
@@ -84,10 +87,10 @@ require('pckr').add({
       end,
    }, -- Crates.io integration
 
-   {'numToStr/Comment.nvim', config = function()
-      require('Comment').setup()
-      require('Comment.ft').hjson = '#%s'
-   end }, -- Commenting code
+   {'numToStr/Comment.nvim', 
+      cond = { keys('n', 'gc'), keys('v', 'gc') },
+      config = function() require('Comment').setup() end 
+   }, -- Commenting code
 
    --
    -- Appearance

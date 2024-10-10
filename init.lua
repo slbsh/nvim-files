@@ -34,20 +34,18 @@ vim.g.mapleader        = " "
 vim.g.smoothie_enabled = 1
 vim.g.zig_fmt_autosave = 0
 
-
 vim.cmd('colorscheme rust')
 
-
--- Imports
 local HOME = os.getenv("HOME")
 
-local files = vim.fn.systemlist(string.format('find %s/.config/nvim/ -maxdepth 1 -type f ! -name "init.lua"', HOME))
-for _, file in pairs(files) do
-   vim.cmd("luafile " .. file)
+dofile(HOME .. "/.config/nvim/plugins.lua")
+
+local function load_dir(dir)
+   require("plenary.scandir").scan_dir(dir, { on_insert = function(file, _)
+      if not file:match("%.lua$") then return end
+      dofile(file)
+   end})
 end
 
-
-local files = vim.fn.systemlist(string.format('ls %s/.config/nvim/plugins/', HOME))
-for _, file in ipairs(files) do
-   vim.cmd(string.format("luafile %s/.config/nvim/plugins/%s", HOME, file))
-end
+load_dir(HOME .. "/.config/nvim/config")
+load_dir(HOME .. "/.config/nvim/plugins")
