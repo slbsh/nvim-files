@@ -31,7 +31,6 @@ vim.opt.listchars:append "eol:↴"
 vim.g.mapleader        = " "
 -- vim.g.&t_ZH            = "\e[3m"
 -- vim.g.&t_ZR            = "\e[23m"
-vim.g.smoothie_enabled = 1
 vim.g.zig_fmt_autosave = 0
 
 vim.cmd('colorscheme rust')

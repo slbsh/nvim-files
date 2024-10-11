@@ -47,6 +47,13 @@ vim.api.nvim_set_keymap('n', '<leader>c', 'gcc', {})
 vim.api.nvim_set_keymap('v', '<leader>c', 'gc', {})
 vim.api.nvim_set_keymap('n', '<leader>x', 'gcA', {})
 
+-- Crates
+function crates(field)
+   return function()
+      require('crates')[field]()
+   end
+end
+
 
 -- Which Key
 require('which-key').setup {
@@ -82,31 +89,31 @@ require('which-key').add({
 
    -- Git
    {"<leader>g", group = "Git"},
-   {"<leader>gt", ":Gitsigns toggle_signs<CR>",              desc = 'toggle signs'},
-   {"<leader>gb", ":Gitsigns toggle_current_line_blame<CR>", desc = 'line blame'},
-   {"<leader>gB", ":Gitsigns blame<CR>",                     desc = 'blame'},
-   {"<leader>ga", ":Gitsigns stage_hunk<CR>",                desc = "stage hunk"},
-   {"<leader>gu", ":Gitsigns undo_stage_hunk<CR>",           desc = "unstage hunk"},
-   {"<leader>gA", ":Gitsigns stage_buffer<CR>",              desc = 'stage buffer'},
-   {"<leader>gR", ":Gitsigns reset_buffer<CR>",              desc = 'reset buffer'},
-   {"<leader>gi", ":Git init<CR>",                           desc = 'init'},
-   {"<leader>gs", ":Git restore --staged %<CR>",             desc = 'restore staged'},
-   {"<leader>gS", ":Git restore %<CR>",                      desc = 'restore'},
-   {"<leader>gf", ":Git fetch<CR>",                          desc = 'fetch'},
-   {"<leader>g.", ":Git add .<CR>",                          desc = 'add all'},
-   {"<leader>gU", ":Git reset HEAD~1<CR>",                   desc = 'undo'},
-   {"<leader>gg", ":Git<CR>",                                desc = 'info'},
-   {"<leader>gL", ":Git log --oneline --graph<CR>",          desc = 'log'},
-   {"<leader>g^", set_upstream,                              desc = 'set upstream'},
-   {"<leader>gC", ":Git checkout ",                          desc = 'checkout'},
-   {"<leader>gd", ":Git diff<CR>",                           desc = 'diff'},
-   {"<leader>gD", ":Git difftool<CR>",                       desc = 'diff tool'},
-   {"<leader>gF", ":lua prompt('Add: ', 'Git add ')",        desc = 'add file'},
-   {"<leader>g#", ":Git reflog<CR>",                         desc = 'reflog'},
-   {"<leader>g@", ":lua prompt('Show: ', 'Git show ')",      desc = 'show'},
-   {"<leader>gh", ":Git help<CR>",                           desc = 'help'},
-   {"<leader>g?", ":Git branch -v<CR>",                      desc = 'branch'},
-   {"<leader>gm", ":lua prompt('Merge: ', 'Git merge ')",    desc = "merge"},
+   {"<leader>gt", ":Gitsigns toggle_signs<CR>",                desc = 'toggle signs'},
+   {"<leader>gb", ":Gitsigns toggle_current_line_blame<CR>",   desc = 'line blame'},
+   {"<leader>gB", ":Gitsigns blame<CR>",                       desc = 'blame'},
+   {"<leader>ga", ":Gitsigns stage_hunk<CR>",                  desc = "stage hunk"},
+   {"<leader>gu", ":Gitsigns undo_stage_hunk<CR>",             desc = "unstage hunk"},
+   {"<leader>gA", ":Gitsigns stage_buffer<CR>",                desc = 'stage buffer'},
+   {"<leader>gR", ":Gitsigns reset_buffer<CR>",                desc = 'reset buffer'},
+   {"<leader>gi", ":Git init<CR>",                             desc = 'init'},
+   {"<leader>gs", ":Git restore --staged %<CR>",               desc = 'restore staged'},
+   {"<leader>gS", ":Git restore %<CR>",                        desc = 'restore'},
+   {"<leader>gf", ":Git reflog expire --expire=now --all<CR>", desc = 'expire'},
+   {"<leader>gF", ":Git reset --hard origin/master<CR>",       desc = 'fuckit'},
+   {"<leader>g.", ":Git add .<CR>",                            desc = 'add all'},
+   {"<leader>gU", ":Git reset HEAD~1<CR>",                     desc = 'undo'},
+   {"<leader>gg", ":Git<CR>",                                  desc = 'info'},
+   {"<leader>gL", ":Git log --oneline --graph<CR>",            desc = 'log'},
+   {"<leader>g^", set_upstream,                                desc = 'set upstream'},
+   {"<leader>gC", ":Git checkout ",                            desc = 'checkout'},
+   {"<leader>gd", ":Git diff<CR>",                             desc = 'diff'},
+   {"<leader>gD", ":Git difftool<CR>",                         desc = 'diff tool'},
+   {"<leader>g#", ":Git reflog<CR>",                           desc = 'reflog'},
+   {"<leader>g@", ":lua prompt('Show: ', 'Git show ')",        desc = 'show'},
+   {"<leader>gh", ":Git help<CR>",                             desc = 'help'},
+   {"<leader>g?", ":Git branch -v<CR>",                        desc = 'branch'},
+   {"<leader>gm", ":lua prompt('Merge: ', 'Git merge ')",      desc = "merge"},
 
    {"<leader>gT", group = 'Stash'},
    {"<leader>gTs", ":Git stash<CR>",      desc = 'stash'},
@@ -132,6 +139,7 @@ require('which-key').add({
    {"<leader>gpF", ":Git push --force<CR>",            desc = 'push force'},
 
    {"<leader>gl", group = 'Pull'},
+   {"<leader>glf", ":Git fetch<CR>",            desc = 'fetch'},
    {"<leader>gll", ":Git pull<CR>",             desc = 'pull'},
    {"<leader>glL", ":lua fetch_pull()<CR>",     desc = 'fetch pull'},
    {"<leader>glr", ":Git pull --rebase<CR>",    desc = 'pull rebase'},
@@ -144,8 +152,6 @@ require('which-key').add({
    {"<leader>g*d", ":lua prompt('URL: ', 'Git remote remove ')", desc = 'remove remote'},
    {"<leader>g*u", ":Git remote update<CR>", desc = 'update remote'},
 
-
-
    {"<leader>h", group = 'gh'},
    {"<leader>a",  ":Octo actions<CR>", desc = 'actions'},
    {"<leader>r", ":Octo repo list<CR>", desc = 'repos'},
@@ -153,8 +159,6 @@ require('which-key').add({
    {"<leader>hI", ":Octo issue search<CR>", desc = 'issues all'},
    {"<leader>hp", ":Octo pr list<CR>", desc = 'prs'},
    {"<leader>hP", ":Octo pr search<CR>", desc = 'prs all'},
-
-
 
 
 
@@ -185,7 +189,7 @@ require('which-key').add({
 
    -- Eval
    {"<leader>e", group = "Eval"},
-   {"<leader>er", ":Run irust -f 4<CR>",            desc = "rust"},
+   {"<leader>er", ":Run irust -f 4<CR>",       desc = "rust"},
    {"<leader>ej", ":Run clj -M -<CR>",         desc = "clojure"},
    {"<leader>ec", ":Run ceval cc -x c<CR>",    desc = "c"},
    {"<leader>eC", ":Run ceval c++ -x c++<CR>", desc = "cpp"},
@@ -194,7 +198,7 @@ require('which-key').add({
    {"<leader>ee", ":Run eva<CR>",              desc = "eva"},
 
    {"<leader>E", group = "Buf Eval"},
-   {"<leader>Er", ":RunBuf irust -f 4<CR>",            desc = "rust"},
+   {"<leader>Er", ":RunBuf irust -f 4<CR>",       desc = "rust"},
    {"<leader>Ej", ":RunBuf clj -M -<CR>",         desc = "clojure"},
    {"<leader>Ec", ":RunBuf ceval cc -x c<CR>",    desc = "c"},
    {"<leader>EC", ":RunBuf ceval c++ -x c++<CR>", desc = "cpp"},
@@ -205,25 +209,24 @@ require('which-key').add({
 
    -- Files
    {"<leader>a", group = "Applications"},
-   {"<leader>ac", _clippy_toggle,        desc = 'clippy'},
-   {"<leader>ab", _broot_toggle,         desc = 'broot'},
-   {"<leader>ah", _htop_toggle,          desc = 'htop'},
-   {"<leader>an", _vimpc_toggle,         desc = 'vimpc'},
-   {"<leader>aw", _wikitui_toggle,       desc = 'wikitui'},
-   {"<leader>af", _fish_toggle,          desc = 'fish'},
-   {"<leader>ag", _glow_toggle,          desc = 'glow'},
-   {"<leader>am", _man_prompt_toggle,    desc = 'man'},
-   {"<leader>at", _telnet_prompt_toggle, desc = 'telnet'},
+   {"<leader>ac", new_term("bacon clippy"),  desc = 'clippy'},
+   {"<leader>ah", new_term("htop"),          desc = 'htop'},
+   {"<leader>an", new_term("vimpc"),         desc = 'vimpc'},
+   {"<leader>aw", new_term("wiki-tui"),      desc = 'wikitui'},
+   {"<leader>af", new_term("fish"),          desc = 'fish'},
+   {"<leader>ag", new_term("glow"),          desc = 'glow'},
+   {"<leader>am", new_prompt_term("man"),    desc = 'man'},
+   {"<leader>at", new_prompt_term("telnet"), desc = 'telnet'},
 
 
    -- Crates
    {"<leader>C", group = "Crates"},
-   {"<leader>Cr", ":lua require('crates').reload",                  desc = 'reload'},
-   {"<leader>CC", ":lua require('crates').show_popup",              desc = 'info'},
-   {"<leader>Cv", ":lua require('crates').show_versions_popup",     desc = 'version'},
-   {"<leader>Cf", ":lua require('crates').show_features_popup",     desc = 'features'},
-   {"<leader>Cd", ":lua require('crates').show_dependencies_popup", desc = 'dependencies'},
-   {"<leader>CD", ":lua require('crates').open_documentation",      desc = 'docs'},
-   {"<leader>Cu", ":lua require('crates').upgrade_crate",           desc = 'update'},
-   {"<leader>CU", ":lua require('crates').upgrade_all_crates",      desc = 'update all'},
+   {"<leader>Cr", crates("reload"),                  desc = 'reload'},
+   {"<leader>CC", crates("show_popup"),              desc = 'info'},
+   {"<leader>Cv", crates("show_versions_popup"),     desc = 'version'},
+   {"<leader>Cf", crates("show_features_popup"),     desc = 'features'},
+   {"<leader>Cd", crates("show_dependencies_popup"), desc = 'dependencies'},
+   {"<leader>CD", crates("open_documentation"),      desc = 'docs'},
+   {"<leader>Cu", crates("upgrade_crate"),           desc = 'update'},
+   {"<leader>CU", crates("upgrade_all_crates"),      desc = 'update all'},
 })
