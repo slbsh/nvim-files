@@ -94,8 +94,29 @@ require('pckr').add({
 
    --
    -- Appearance
-   'psliwka/vim-smoothie',        -- smooth scrolling
-   'lewis6991/gitsigns.nvim',     -- visual git integration
+   {'lewis6991/gitsigns.nvim', config = function()
+      require('gitsigns').setup({
+         signs = {
+            add = { text = " +" },
+            change = { text = " ~" },
+            delete = { text = " -" },
+            topdelete = { text = " -" },
+            changedelete = { text = " ~" },
+            untracked = { text = " |" },
+         },
+         signs_staged = {
+            add = { text = "+" },
+            change = { text = "~" },
+            delete = { text = "-" },
+            topdelete = { text = "-" },
+            changedelete = { text = "~" },
+            untracked = { text = "|" },
+         },
+      })
+   end },     -- visual git integration
+   {'psliwka/vim-smoothie', config_pre = function()
+      vim.g.smoothie_enabled = 1
+   end },        -- smooth scrolling
    {'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons' },
    },
