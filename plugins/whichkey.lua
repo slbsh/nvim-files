@@ -1,29 +1,16 @@
 -- Util
 function prompt(prompt, cmd)
-   local input = vim.fn.input(prompt)
-   -- if input == nil or input == "" then
-   --    return
-   -- end
-
-   vim.api.nvim_command(cmd .. input)
+   vim.api.nvim_command(cmd .. vim.fn.input(prompt))
 end
 
 -- Toggles
 function toggle_wrap()
-  if vim.api.nvim_get_option("wrap") then
-    vim.api.nvim_set_option("wrap", false)
-  else
-    vim.api.nvim_set_option("wrap", true)
-  end
+   vim.api.nvim_set_option("wrap", not vim.api.nvim_get_option("wrap"))
 end
 
 vim.opt_local.spelllang = 'en_us'
 function toggle_spell()
-   if vim.opt_local.spell:get() then
-      vim.opt_local.spell = false
-   else
-      vim.opt_local.spell = true
-   end
+   vim.opt_local.spell = not vim.opt_local.spell:get()
 end
 
 
@@ -35,7 +22,6 @@ function set_upstream()
    local out = vim.fn.system("git branch -u origin/" .. branch)
    vim.notify(out, "info")
 end
-
 
 function fetch_pull()
    vim.api.nvim_command("Git fetch")
@@ -70,7 +56,8 @@ require('which-key').add({
    {"<leader>x", desc = "append comment",  mode = "n"},
 
    {"<leader><leader>", ":noh<CR>",               desc = "clear"},
-   {"<leader>t",        ":ToggleTerm<CR>",        desc = "terminal"},
+   {"<leader>t",        ":ToggleTerm<CR>",        desc = "toggleterm"},
+   {"<leader><C-t>",    ":terminal<CR>",          desc = "terminal"},
    {"<leader>W",        ":lua toggle_wrap()<CR>", desc = "wrap"},
    {"<leader>w",        "<C-w>w",                 desc = "next window"},
 
@@ -153,12 +140,12 @@ require('which-key').add({
    {"<leader>g*u", ":Git remote update<CR>", desc = 'update remote'},
 
    {"<leader>h", group = 'gh'},
-   {"<leader>a",  ":Octo actions<CR>", desc = 'actions'},
-   {"<leader>r", ":Octo repo list<CR>", desc = 'repos'},
-   {"<leader>hi", ":Octo issue list<CR>", desc = 'issues'},
+   {"<leader>a",  ":Octo actions<CR>",      desc = 'actions'},
+   {"<leader>r",  ":Octo repo list<CR>",    desc = 'repos'},
+   {"<leader>hi", ":Octo issue list<CR>",   desc = 'issues'},
    {"<leader>hI", ":Octo issue search<CR>", desc = 'issues all'},
-   {"<leader>hp", ":Octo pr list<CR>", desc = 'prs'},
-   {"<leader>hP", ":Octo pr search<CR>", desc = 'prs all'},
+   {"<leader>hp", ":Octo pr list<CR>",      desc = 'prs'},
+   {"<leader>hP", ":Octo pr search<CR>",    desc = 'prs all'},
 
 
 
@@ -185,26 +172,28 @@ require('which-key').add({
    -- Operations
    {"<leader>o", group = "Operations"},
    {"<leader>of", ":'<,'>!fold -w 100 -s<CR>", desc = "fold"},
+   {"<leader>oz", ":terminal ouch decompress %:p<CR>", desc = "decomp"},
+   {"<leader>oZ", ":terminal ouch decompress %:p && rm %:p<CR>", desc = "decomp & rm"},
 
 
    -- Eval
    {"<leader>e", group = "Eval"},
-   {"<leader>er", ":Run irust -f 4<CR>",       desc = "rust"},
+   {"<leader>er", ":Run irust<CR>",       desc = "rust"},
    {"<leader>ej", ":Run clj -M -<CR>",         desc = "clojure"},
    {"<leader>ec", ":Run ceval cc -x c<CR>",    desc = "c"},
    {"<leader>eC", ":Run ceval c++ -x c++<CR>", desc = "cpp"},
    {"<leader>ez", ":Run ceval zig run<CR>",    desc = "zig"},
    {"<leader>eh", ":Run sh<CR>",               desc = "shell"},
-   {"<leader>ee", ":Run eva<CR>",              desc = "eva"},
+   {"<leader>ee", ":Run eva -f 4<CR>",              desc = "eva"},
 
    {"<leader>E", group = "Buf Eval"},
-   {"<leader>Er", ":RunBuf irust -f 4<CR>",       desc = "rust"},
+   {"<leader>Er", ":RunBuf irust<CR>",       desc = "rust"},
    {"<leader>Ej", ":RunBuf clj -M -<CR>",         desc = "clojure"},
    {"<leader>Ec", ":RunBuf ceval cc -x c<CR>",    desc = "c"},
    {"<leader>EC", ":RunBuf ceval c++ -x c++<CR>", desc = "cpp"},
    {"<leader>Ez", ":RunBuf ceval zig run<CR>",    desc = "zig"},
    {"<leader>Eh", ":RunBuf sh<CR>",               desc = "shell"},
-   {"<leader>Ee", ":RunBuf eva<CR>",              desc = "eva"},
+   {"<leader>Ee", ":RunBuf eva -f 4<CR>",              desc = "eva"},
 
 
    -- Files
