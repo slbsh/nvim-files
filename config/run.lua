@@ -1,18 +1,24 @@
 local uv = vim.loop
 
+-- TODO: RunInteractive - no stdin from lines, instead reading user's input as stdin
+
 local function run_async_print(last_line, content, args)
    local stdout = uv.new_pipe(false)
-   local stdin = uv.new_pipe(false)
+   local stderr = uv.new_pipe(false)
+   local stdin  = uv.new_pipe(false)
 
    local args = vim.split(args, " ")
    local cmd = table.remove(args, 1)
 
    local handle, pid = uv.spawn(cmd, {
       args = args,
-      stdio = {stdin, stdout, nil},
+      stdio = {stdin, stdout, stderr},
    }, function(code, _)
       print(code)
+      stdout:read_stop()
       stdout:close()
+      stderr:read_stop()
+      stderr:close()
    end)
 
    if not handle then
@@ -20,8 +26,7 @@ local function run_async_print(last_line, content, args)
       return
    end
 
-   uv.write(stdin, content, function(err) stdin:close() end)
-   uv.read_start(stdout, function(err, data)
+   local function printdata(err, data)
       if not data then return end
 
       vim.schedule(function()
@@ -33,6 +38,14 @@ local function run_async_print(last_line, content, args)
          vim.fn.append(last_line, lines)
          last_line = last_line + #lines
       end)
+   end
+
+   uv.write(stdin, content)
+   uv.read_start(stdout, printdata)
+   uv.read_start(stderr, printdata)
+
+   uv.shutdown(stdin, function() 
+      uv.close(handle)
    end)
 end
 
