@@ -8,6 +8,15 @@ local function run_async_print(last_line, content, args)
    local stdin  = uv.new_pipe(false)
 
    local args = vim.split(args, " ")
+   local env = vim.env
+
+   -- handle env args: :Run $VAR=value cmd
+   while args[1]:sub(1, 1) == "$" do
+      local arg = vim.split(args[1], "=")
+      env[arg[1]:sub(2)] = arg[2]
+      table.remove(args, 1)
+   end
+
    local cmd = table.remove(args, 1)
 
    local handle, pid = uv.spawn(cmd, {
