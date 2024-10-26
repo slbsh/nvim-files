@@ -187,13 +187,13 @@ require('which-key').add({
    {"<leader>ee", ":Run eva -f 4<CR>",         desc = "eva"},
 
    {"<leader>E", group = "Buf Eval"},
-   {"<leader>Er", ":RunBuf $NO_COLOR=1 irust<CR>",desc = "rust"},
-   {"<leader>Ej", ":RunBuf clj -M -<CR>",         desc = "clojure"},
-   {"<leader>Ec", ":RunBuf ceval cc -x c<CR>",    desc = "c"},
-   {"<leader>EC", ":RunBuf ceval c++ -x c++<CR>", desc = "cpp"},
-   {"<leader>Ez", ":RunBuf ceval zig run<CR>",    desc = "zig"},
-   {"<leader>Eh", ":RunBuf sh<CR>",               desc = "shell"},
-   {"<leader>Ee", ":RunBuf eva -f 4<CR>",         desc = "eva"},
+   {"<leader>Er", ":%Run $NO_COLOR=1 irust<CR>",desc = "rust"},
+   {"<leader>Ej", ":%Run clj -M -<CR>",         desc = "clojure"},
+   {"<leader>Ec", ":%Run ceval cc -x c<CR>",    desc = "c"},
+   {"<leader>EC", ":%Run ceval c++ -x c++<CR>", desc = "cpp"},
+   {"<leader>Ez", ":%Run ceval zig run<CR>",    desc = "zig"},
+   {"<leader>Eh", ":%Run sh<CR>",               desc = "shell"},
+   {"<leader>Ee", ":%Run eva -f 4<CR>",         desc = "eva"},
 
 
    -- Files

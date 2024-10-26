@@ -2,12 +2,14 @@ local uv = vim.loop
 
 -- TODO: RunInteractive - no stdin from lines, instead reading user's input as stdin
 
-local function run_async_print(last_line, content, args)
+vim.api.nvim_create_user_command("Run", function(opts)
+   local content = table.concat(vim.fn.getline(opts.line1, opts.line2), "\n")
+
    local stdout = uv.new_pipe(false)
    local stderr = uv.new_pipe(false)
    local stdin  = uv.new_pipe(false)
 
-   local args = vim.split(args, " ")
+   local args = vim.split(opts.args, " ")
    local env = vim.env
 
    -- handle env args: :Run $VAR=value cmd
@@ -44,8 +46,8 @@ local function run_async_print(last_line, content, args)
             table.remove(lines)
          end
 
-         vim.fn.append(last_line, lines)
-         last_line = last_line + #lines
+         vim.fn.append(opts.line2, lines)
+         opts.line2 = opts.line2 + #lines
       end)
    end
 
@@ -56,14 +58,4 @@ local function run_async_print(last_line, content, args)
    uv.shutdown(stdin, function() 
       uv.close(handle)
    end)
-end
-
-vim.api.nvim_create_user_command("Run", function(opts)
-   local content = table.concat(vim.fn.getline(opts.line1, opts.line2), "\n")
-   run_async_print(opts.line2, content, opts.args)
 end, { nargs = 1, range = true })
-
-vim.api.nvim_create_user_command("RunBuf", function(opts)
-   local content = table.concat(vim.fn.getbufline("%", 1, "$"), "\n")
-   run_async_print(vim.fn.line("$"), content, opts.args)
-end, { nargs = 1 })

@@ -131,6 +131,7 @@ source.items = function()
       heart      = "❤️",  thumbsup  = "👍",
       skull      = "💀", beg       = "🥺👉👈",
       vomit      = "🤮", hundered  = "💯",
+      sob        = "😭", flushed   = "😳",
    }
 
    local items = {}
