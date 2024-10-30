@@ -153,6 +153,8 @@ require('which-key').add({
    -- Buffers
    {"<leader>b", group = "Buffers"},
    {"<leader>bf", ':Telescope buffers<CR>', desc = 'telescope'},
+   {"<leader>bt", ':retab<CR>',             desc = 'retab'},
+   {"<leader>bT", ':retab!<CR>',            desc = 'retab!'},
    {"<leader>bn", ':bn<CR>',                desc = 'next'},
    {"<leader>bN", ':enew<CR>',              desc = 'new'},
    {"<leader>bp", ':bp<CR>',                desc = 'previous'},

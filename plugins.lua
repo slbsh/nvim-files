@@ -156,5 +156,15 @@ require('pckr').add({
         requires_generate_from_grammar = false,
         filetype = 'fsharp',
       }
+
+      -- hack to prevent treesitter from overriding the tab settings
+      vim.api.nvim_create_autocmd("FileType", {
+         pattern = "*",
+         callback = function()
+            vim.bo.expandtab    = true
+            vim.bo.shiftwidth   = 3
+            vim.bo.tabstop      = 3
+         end
+      })
    end }, -- syntax highlighting
 })
