@@ -59,3 +59,8 @@ vim.api.nvim_create_user_command("Run", function(opts)
       uv.close(handle)
    end)
 end, { nargs = 1, range = true })
+
+vim.api.nvim_create_user_command("RunTerm", function(opts)
+   local content = table.concat(vim.fn.getline(opts.line1, opts.line2), "\n")
+   vim.api.nvim_command("terminal " .. content)
+end, { range = true })

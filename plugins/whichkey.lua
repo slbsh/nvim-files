@@ -57,7 +57,8 @@ require('which-key').add({
 
    {"<leader><leader>", ":noh<CR>",               desc = "clear"},
    {"<leader>t",        ":ToggleTerm<CR>",        desc = "toggleterm"},
-   {"<leader><C-t>",    ":terminal<CR>",          desc = "terminal"},
+   {"<leader><C-t>",    ":terminal<CR>",          desc = "terminal (empty)"},
+   {"<leader>T",        ":RunTerm<CR>",           desc = "terminal"},
    {"<leader>W",        ":lua toggle_wrap()<CR>", desc = "wrap"},
    {"<leader>w",        "<C-w>w",                 desc = "next window"},
 
