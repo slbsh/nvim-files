@@ -2,6 +2,15 @@ local uv = vim.loop
 
 -- TODO: RunInteractive - no stdin from lines, instead reading user's input as stdin
 
+local processes = {}
+
+vim.api.nvim_create_user_command("Abort", function(opts)
+   for pid, handle in pairs(processes) do
+      uv.process_kill(handle)
+   end
+end, {})
+
+
 vim.api.nvim_create_user_command("Run", function(opts)
    local content = table.concat(vim.fn.getline(opts.line1, opts.line2), "\n")
 
@@ -21,16 +30,21 @@ vim.api.nvim_create_user_command("Run", function(opts)
 
    local cmd = table.remove(args, 1)
 
+   local tmp_pid = 0
    local handle, pid = uv.spawn(cmd, {
       args = args,
       stdio = {stdin, stdout, stderr},
-   }, function(code, _)
-      print(code)
+   }, function(_, signal)
+      table.remove(processes, tmp_pid)
+      print(signal)
       stdout:read_stop()
       stdout:close()
       stderr:read_stop()
       stderr:close()
    end)
+
+   tmp_pid = pid
+   processes[pid] = handle
 
    if not handle then
       print(pid)
@@ -54,10 +68,7 @@ vim.api.nvim_create_user_command("Run", function(opts)
    uv.write(stdin, content)
    uv.read_start(stdout, printdata)
    uv.read_start(stderr, printdata)
-
-   uv.shutdown(stdin, function() 
-      uv.close(handle)
-   end)
+   uv.shutdown(stdin)
 end, { nargs = 1, range = true })
 
 vim.api.nvim_create_user_command("RunTerm", function(opts)

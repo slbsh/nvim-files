@@ -181,6 +181,8 @@ require('which-key').add({
 
 
    -- Eval
+   {"<leader>A",  ":Abort<CR>", desc = "abort all"},
+
    {"<leader>e", group = "Eval"},
    {"<leader>er", ":Run $NO_COLOR=1 irust<CR>",desc = "rust"},
    {"<leader>ej", ":Run clj -M -<CR>",         desc = "clojure"},
