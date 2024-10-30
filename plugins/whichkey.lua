@@ -153,8 +153,6 @@ require('which-key').add({
    -- Buffers
    {"<leader>b", group = "Buffers"},
    {"<leader>bf", ':Telescope buffers<CR>', desc = 'telescope'},
-   {"<leader>bt", ':retab<CR>',             desc = 'retab'},
-   {"<leader>bT", ':retab!<CR>',            desc = 'retab!'},
    {"<leader>bn", ':bn<CR>',                desc = 'next'},
    {"<leader>bN", ':enew<CR>',              desc = 'new'},
    {"<leader>bp", ':bp<CR>',                desc = 'previous'},
@@ -174,7 +172,10 @@ require('which-key').add({
 
    -- Operations
    {"<leader>o", group = "Operations"},
-   {"<leader>of", ":'<,'>!fold -w 100 -s<CR>", desc = "fold"},
+   {"<leader>of", ":'<,'>!fold -w 100 -s<CR>",         desc = "fold"},
+   {"<leader>oF", ":%!fold -w 100 -s<CR>",             desc = "fold buf"},
+   {"<leader>bt", ':retab<CR>',                        desc = 'retab'},
+   {"<leader>bT", ':retab!<CR>',                       desc = 'retab!'},
    {"<leader>oz", ":terminal ouch decompress %:p<CR>", desc = "decomp"},
    {"<leader>oZ", ":terminal ouch decompress %:p && rm %:p<CR>", desc = "decomp & rm"},
 
