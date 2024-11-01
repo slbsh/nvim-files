@@ -5,7 +5,7 @@ vim.opt.cursorline   = true
 vim.opt.number       = true
 vim.opt.title        = true
 vim.opt.wildmenu     = true
-vim.opt.expandtab    = true
+-- vim.opt.expandtab    = true
 vim.opt.shiftwidth   = 3
 vim.opt.tabstop      = 3
 vim.opt.scrolloff    = 3
@@ -27,10 +27,13 @@ vim.opt.list         = true
 
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
+vim.opt.listchars:append "tab:▎⋅"
 
 vim.g.mapleader        = " "
--- vim.g.&t_ZH            = "\e[3m"
--- vim.g.&t_ZR            = "\e[23m"
+-- vim.g.t_ZH             = "\x1b[3m"
+-- vim.g.t_ZR             = "\x1b[23m"
+-- vim.g.t_ZU             = "\x1b[4m"
+-- vim.g.t_ZN             = "\x1b[24m"
 vim.g.zig_fmt_autosave = 0
 
 vim.cmd('colorscheme rust')

@@ -13,6 +13,9 @@ local event = require('pckr.loader.event')
 local keys = require('pckr.loader.keys')
 require('pckr').add({
    "nvim-lua/plenary.nvim",
+   {"lewis6991/pckr.nvim",
+      requires = { "nvim-lua/plenary.nvim" }
+   },
 
    -- Completion
    {'hrsh7th/nvim-cmp', requires = {
@@ -48,6 +51,7 @@ require('pckr').add({
          'nvim-telescope/telescope.nvim'
       }
    },
+
 
    --
    -- Utils
