@@ -165,7 +165,7 @@ require('pckr').add({
       vim.api.nvim_create_autocmd("FileType", {
          pattern = "*",
          callback = function()
-            vim.bo.expandtab    = true
+            vim.bo.expandtab    = false
             vim.bo.shiftwidth   = 3
             vim.bo.tabstop      = 3
          end
