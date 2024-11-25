@@ -79,6 +79,7 @@ source.items = function()
       uumlaut = "ü", Uumlaut = "Ü",
       sz      = "ẞ", Sz      = "ß",
 
+		-- Hebrew
       aleph   = "ℵ", bet    = "ℶ",
 
       -- Arrows
@@ -111,6 +112,17 @@ source.items = function()
       vdash     = "⊢", dashv    = "⊣",
 
       prime     = "′", integral = "∫",
+
+		-- superscript
+		salpha = "ᵅ", sbeta = "ᵝ",
+		sgamma = "ᵞ", sdelta = "ᵟ",
+		sepsilon = "ᵋ", seta = "ᶿ",
+
+		-- subscript
+		_alpha = "ᵅ", _beta = "ᵦ",
+		_gamma = "ᵧ", _delta = "ᵟ",
+		_epsilon = "ᵋ", _theta = "ᶿ",
+
 
       -- APL
       _conj_plus = "+", _neg_minus = "−",
@@ -145,7 +157,6 @@ source.items = function()
       })
    end
    return items
-
 end
 
 require('cmp').register_source('ext', source.new())

@@ -147,6 +147,7 @@ require('which-key').add({
    {"<leader>r",  ":Octo repo list<CR>",    desc = 'repos'},
    {"<leader>hi", ":Octo issue list<CR>",   desc = 'issues'},
    {"<leader>hI", ":Octo issue search<CR>", desc = 'issues all'},
+   {"<leader>hc", ":Octo issue create<CR>", desc = 'create issue'},
    {"<leader>hp", ":Octo pr list<CR>",      desc = 'prs'},
    {"<leader>hP", ":Octo pr search<CR>",    desc = 'prs all'},
 
@@ -226,4 +227,8 @@ require('which-key').add({
    {"<leader>CD", crates("open_documentation"),      desc = 'docs'},
    {"<leader>Cu", crates("upgrade_crate"),           desc = 'update'},
    {"<leader>CU", crates("upgrade_all_crates"),      desc = 'update all'},
+
+	{"<leader>m", group = "Map"},
+	{"<leader>mc", ":MapChars superscript<CR>", desc = "superscript"},
+	{"<leader>ms", ":MapChars subscript<CR>",   desc = "subscript"},
 })
