@@ -30,10 +30,6 @@ vim.opt.listchars:append "eol:↴"
 vim.opt.listchars:append "tab:▎⋅"
 
 vim.g.mapleader        = " "
--- vim.g.t_ZH             = "\x1b[3m"
--- vim.g.t_ZR             = "\x1b[23m"
--- vim.g.t_ZU             = "\x1b[4m"
--- vim.g.t_ZN             = "\x1b[24m"
 vim.g.zig_fmt_autosave = 0
 
 vim.cmd('colorscheme rust')
