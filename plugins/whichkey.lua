@@ -143,8 +143,9 @@ require('which-key').add({
    {"<leader>g*u", ":Git remote update<CR>", desc = 'update remote'},
 
    {"<leader>h", group = 'gh'},
-   {"<leader>a",  ":Octo actions<CR>",      desc = 'actions'},
-   {"<leader>r",  ":Octo repo list<CR>",    desc = 'repos'},
+   {"<leader>ha", ":Octo actions<CR>",      desc = 'actions'},
+   {"<leader>hr", ":Octo repo list<CR>",    desc = 'repos'},
+	{"<leader>hf", ":Octo repo fork<CR>",    desc = 'fork'},
    {"<leader>hi", ":Octo issue list<CR>",   desc = 'issues'},
    {"<leader>hI", ":Octo issue search<CR>", desc = 'issues all'},
    {"<leader>hc", ":Octo issue create<CR>", desc = 'create issue'},
