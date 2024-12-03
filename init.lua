@@ -45,5 +45,5 @@ local function load_dir(dir)
    end})
 end
 
-load_dir(HOME .. "/.config/nvim/config")
 load_dir(HOME .. "/.config/nvim/plugins")
+load_dir(HOME .. "/.config/nvim/config")
