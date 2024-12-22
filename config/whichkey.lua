@@ -197,6 +197,7 @@ require('which-key').add({
    {"<leader>ez", ":Run ceval zig run<CR>",    desc = "zig"},
    {"<leader>eh", ":Run sh<CR>",               desc = "shell"},
    {"<leader>ee", ":Run eva -f 4<CR>",         desc = "eva"},
+   {"<leader>eg", ":Run gpt<CR>",              desc = "gpt"},
 
    {"<leader>E", group = "Buf Eval"},
    {"<leader>Er", ":%Run $NO_COLOR=1 irust<CR>",desc = "rust"},
@@ -209,6 +210,7 @@ require('which-key').add({
    {"<leader>Ez", ":%Run ceval zig run<CR>",    desc = "zig"},
    {"<leader>Eh", ":%Run sh<CR>",               desc = "shell"},
    {"<leader>Ee", ":%Run eva -f 4<CR>",         desc = "eva"},
+   {"<leader>Eg", ":%Run gpt<CR>",              desc = "gpt"},
 
 
    -- Files

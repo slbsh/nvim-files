@@ -149,18 +149,6 @@ require('pckr').add({
          indent = { enable = true },
       })
 
-      local conf = require('nvim-treesitter.parsers').get_parser_configs()
-      conf.fsharp = {
-        install_info = {
-          url = 'https://github.com/ionide/tree-sitter-fsharp',
-          branch = 'main',
-          files = { 'src/scanner.c', 'src/parser.c' },
-          location = "fsharp"
-        },
-        requires_generate_from_grammar = false,
-        filetype = 'fsharp',
-      }
-
       -- hack to prevent treesitter from overriding the tab settings
       vim.api.nvim_create_autocmd("FileType", {
          pattern = "*",
