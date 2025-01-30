@@ -11,154 +11,165 @@ end
 
 -- set t_Co=256
 
--- vars
-local BG =           "#24201d" -- background
-local UI_BG =        "#3d2e2d" -- sidebar
+local Fg   = "#d7c17e"
+local Bg0  = "#24231e"
+local Bg1  = "#38352e"
+local Bg2  = "#514d43"
 
-local Gray =         "#806e6e" -- comments
+local OrangeGreen = "#92730c"
+local OrangeDim   = "#c77905"
+local Orange      = "#f2a40d"
+local OrangeLit   = "#f0c242"
 
-local OrangeLight =  "#e3a30c" -- keyword
-local Orange =       "#d48600"
-local OrangeDark =   "#d97a0e"
+local GreenDim    = "#749028"
+local Green       = "#8dab2b"
+local GreenLit    = "#a5ba3b"
 
-local Green =        "#8aad38"
-local GreenDark =    "#8a6813"
+local Yellow      = "#f5e20a"
+local YellowLit   = "#f8e853"
 
-local Yellow =       "#f7ef00"
-local YellowLight =  "#d4b66f" -- text
-local YellowBright = "#d5c730"
+local RedDim      = "#a4371e"
+local Red         = "#cc4519"
+local RedLit      = "#ee4c2b"
 
-local Red =          "#b64511"
-local RedDark =      "#912121"
+local GrayDim     = "#6b6757"
+local Gray        = "#8d8572"
+local GrayLit     = "#a39d8f"
 
-local Menus =        "#422f24" -- "#4f3524"
-local Bar =          "#794b44" -- statusline
-local Warn =         "#ef2907"
-
-local fg2 =          "#c3ac90" -- line numbers
+local BlueDim     = "#527689"
+local Blue        = "#6385a1"
+local BlueLit     = "#799eaf"
 
 -- the stuff
-hi('Normal',         { fg = YellowLight, bg = BG                                  })
-hi('Cursor',         { fg = BG,          bg = YellowLight                         })
-hi('TermCursor',     { link = 'Cursor'                                            })
-hi('CursorLine',     {                   bg = UI_BG                               })
-hi('CursorLineNr',   { fg = GreenDark,   bg = BG                                  })
-hi('CursorColumn',   {                   bg = UI_BG                               })
-hi('CursorLineNr',   { fg = Yellow,      bg = UI_BG                               })
-hi('LineNr',         { fg = YellowLight, bg = Menus                               })
-hi('ColorColumn',    {                   bg = UI_BG                               })
-hi('FoldColumn',     { fg = Gray,        bg = UI_BG                               })
-hi('SignColumn',     { fg = Gray,        bg = Menus                               })
-hi('FloatBorder',    { bg =  BG                                                   })
+hi('Normal',         { fg = Fg,          bg = Bg0                                })
+hi('Cursor',         { fg = Bg0,          bg = Fg                                })
+hi('TermCursor',     { link = 'Cursor'                                          })
+hi('CursorLine',     {                   bg = Bg1                               })
+hi('CursorLineNr',   { fg = GreenDim,    bg = Bg0                                })
+hi('CursorColumn',   {                   bg = Bg1                               })
+hi('CursorLineNr',   { fg = Yellow,      bg = Bg1                               })
+hi('LineNr',         { fg = Fg,          bg = Bg1                               })
+hi('ColorColumn',    {                   bg = Bg1                               })
+hi('FoldColumn',     { fg = Gray,        bg = Bg1                               })
+hi('SignColumn',     { fg = Gray,        bg = Bg1                               })
+hi('FloatBorder',    {                   bg = Bg0                                })
 
-hi('VertSplit',      { fg = "#b29d83",   bg = Bar                                 })
-hi('MatchParen',     { fg = Warn,                     underline = true            })
-hi('StatusLine',     { fg = fg2,         bg = UI_BG,  bold = true                 })
-hi('StatusLineNC',   {                                reverse = true              })
-hi('TabLine',        {                   bg = UI_BG,  underline = true            })
-hi('TabLineFill',    {                                reverse = true              })
-hi('TabLineSel',     {                                bold = true                 })
+hi('VertSplit',      { fg = "#b29d83",   bg = Bg1                               })
+hi('MatchParen',     { fg = RedLit,                 underline = true            })
+hi('StatusLine',     { fg = Fg,          bg = Bg1,  bold = true                 })
+hi('StatusLineNC',   { fg = Fg,          bg = GrayDim,                          })
+hi('TabLine',        {                   bg = Bg1,  underline = true            })
+hi('TabLineFill',    {                              reverse = true              })
+hi('TabLineSel',     { fg = Fg,                     bold = true                 })
 
-hi('Pmenu',          { fg = YellowLight, bg = BG                                  })
-hi('PmenuSel',       {                   bg = Bar                                 })
+hi('Pmenu',          { fg = Fg,          bg = Bg0                                })
+hi('PmenuSel',       {                   bg = GrayDim                           })
 
-hi('IncSearch',      { fg = BG,          bg = OrangeLight,                        })
-hi('Search',         {                                underline = true            })
-hi('Directory',      { fg = Red                                                   })
-hi('Folded',         { fg = "#a18e77",   bg = BG                                  })
-hi('WildMenu',       { fg = GreenDark,   bg = BG                                  })
-hi('Visual',         {                   bg = "#3a2f1e"                           })
-hi('Title',          { fg = YellowLight,              bold = true                 })
+hi('IncSearch',      { fg = Bg0,         bg = OrangeLit,                        })
+hi('Search',         {                              underline = true            })
+hi('Directory',      { fg = Red                                                 })
+hi('Folded',         { fg = "#a18e77",   bg = Bg0                                })
+hi('WildMenu',       { fg = GreenDim,    bg = Bg0                                })
+hi('Visual',         {                   bg = Bg2                           })
+hi('Title',          { fg = Fg,                     bold = true                 })
 
-hi('WinSeparator',   { link = 'VertSplit'                                         })
-hi('EndOfBuffer',    { link = 'NonText'                                           })
-hi('LineNrAbove',    { link = 'LineNr'                                            })
-hi('LineNrBelow',    { link = 'LineNr'                                            })
-hi('QuickFixLine',   { link = 'Search'                                            })
-hi('CursorLineSign', { link = 'SignColumn'                                        })
-hi('CursorLineFold', { link = 'FoldColumn'                                        })
-hi('CurSearch',      { link = 'Search'                                            })
-hi('PmenuKind',      { link = 'Pmenu'                                             })
-hi('PmenuKindSel',   { link = 'PmenuSel'                                          })
-hi('PmenuExtra',     { link = 'Pmenu'                                             })
-hi('PmenuExtraSel',  { link = 'PmenuSel'                                          })
-hi('Substitute',     { link = 'Search'                                            })
-hi('Whitespace',     { link = 'NonText'                                           })
-hi('MsgSeparator',   { link = 'StatusLine'                                        })
-hi('NormalFloat',    { link = 'Pmenu'                                             })
-hi('FloatTitle',     { link = 'Title'                                             })
-hi('FloatFooter',    { link = 'Title'                                             })
+hi('WinSeparator',   { link = 'VertSplit'                                       })
+hi('EndOfBuffer',    { link = 'NonText'                                         })
+hi('LineNrAbove',    { link = 'LineNr'                                          })
+hi('LineNrBelow',    { link = 'LineNr'                                          })
+hi('QuickFixLine',   { link = 'Search'                                          })
+hi('CursorLineSign', { link = 'SignColumn'                                      })
+hi('CursorLineFold', { link = 'FoldColumn'                                      })
+hi('CurSearch',      { link = 'Search'                                          })
+hi('PmenuKind',      { link = 'Pmenu'                                           })
+hi('PmenuKindSel',   { link = 'PmenuSel'                                        })
+hi('PmenuExtra',     { link = 'Pmenu'                                           })
+hi('PmenuExtraSel',  { link = 'PmenuSel'                                        })
+hi('Substitute',     { link = 'Search'                                          })
+hi('Whitespace',     { link = 'NonText'                                         })
+hi('MsgSeparator',   { link = 'StatusLine'                                      })
+hi('NormalFloat',    { link = 'Pmenu'                                           })
+hi('FloatTitle',     { link = 'Title'                                           })
+hi('FloatFooter',    { link = 'Title'                                           })
 -- hi('FloatShadow',        { bg = 'Black', blend = 80                               })
 -- hi('FloatShadowThrough', { bg = 'Black', blend = 100                              })
 
+hi('LualineModen',   { fg = Bg1,     bg = Fg,       bold = true                 })
+hi('LualineModei',   { fg = Bg1,     bg = Green,    bold = true                 })
+hi('LualineModev',   { fg = Bg1,     bg = Orange,   bold = true                 })
+hi('LualineModeV',   { fg = Bg1,     bg = Orange,   bold = true                 })
+hi('LualineModec',   { fg = Bg1,     bg = Yellow,   bold = true                 })
+hi('LualineModeR',   { fg = Bg1,     bg = Red,      bold = true                 })
+hi('LualineBuffers', { fg = GrayLit, bg = GrayDim,  bold = true                 })
+
 -- syntax stuff
-hi('Boolean',        { fg = Red                                                   })
-hi('Character',      { fg = Red                                                   })
-hi('Comment',        { fg = Gray                                                  })
-hi('Conditional',    { fg = OrangeLight,                                          })
-hi('Constant',       { fg = Red                                                   })
-hi('Float',          { fg = Red                                                   })
-hi('Function',       { fg = RedDark                                               })
-hi('Identifier',     { fg = YellowLight                                           })
-hi('Keyword',        { fg = OrangeLight,               bold = true                })
-hi('Label',          { fg = Orange,                                               })
-hi('Define',         { fg = OrangeLight,                                          })
-hi('Number',         { fg = Red                                                   })
-hi('Operator',       { fg = OrangeLight,                                          })
-hi('PreProc',        { fg = OrangeLight,                                          })
-hi('Special',        { fg = YellowLight                                           })
-hi('SpecialKey',     { fg = fg2,         bg = UI_BG                               })
-hi('Statement',      { fg = OrangeLight,                                          })
-hi('StorageClass',   { fg = OrangeDark,               italic = true               })
-hi('String',         { fg = GreenDark                                             })
-hi('Tag',            { fg = OrangeLight,                                          })
-hi('Type',           { fg = OrangeDark                                            })
-hi('Repeat',         { link = 'Statement'                                         })
-hi('Exception',      { link = 'Statement'                                         })
-hi('Include',        { link = 'PreProc'                                           })
-hi('Macro',          { link = 'PreProc'                                           })
-hi('PreCondit',      { link = 'PreProc'                                           })
-hi('Structure',      { link = 'Type'                                              })
-hi('Typedef',        { link = 'Type'                                              })
-hi('SpecialChar',    { link = 'Special'                                           })
-hi('Delimiter',      { link = 'Special'                                           })
-hi('SpecialComment', { link = 'Special'                                           })
-hi('Debug',          { link = 'Special'                                           })
+hi('Boolean',        { fg = Red                                                 })
+hi('Character',      { fg = Red                                                 })
+hi('Comment',        { fg = Gray                                                })
+hi('Conditional',    { fg = OrangeLit,                                          })
+hi('Constant',       { fg = Red                                                 })
+hi('Float',          { fg = Red                                                 })
+hi('Function',       { fg = RedDim                                              })
+hi('Identifier',     { fg = Fg                                                  })
+hi('Keyword',        { fg = OrangeLit,               bold = true                })
+hi('Label',          { fg = Orange,                                             })
+hi('Define',         { fg = OrangeLit,                                          })
+hi('Number',         { fg = Red                                                 })
+hi('Operator',       { fg = OrangeLit,                                          })
+hi('PreProc',        { fg = OrangeLit,                                          })
+hi('Special',        { fg = Fg                                                  })
+hi('SpecialKey',     { fg = fg2,         bg = Bg1                               })
+hi('Statement',      { fg = OrangeLit,                                          })
+hi('StorageClass',   { fg = OrangeDim,               italic = true              })
+hi('String',         { fg = OrangeGreen,                                          })
+hi('Tag',            { fg = OrangeLit,                                          })
+hi('Type',           { fg = OrangeDim                                           })
+hi('Repeat',         { link = 'Statement'                                       })
+hi('Exception',      { link = 'Statement'                                       })
+hi('Include',        { link = 'PreProc'                                         })
+hi('Macro',          { link = 'PreProc'                                         })
+hi('PreCondit',      { link = 'PreProc'                                         })
+hi('Structure',      { link = 'Type'                                            })
+hi('Typedef',        { link = 'Type'                                            })
+hi('SpecialChar',    { link = 'Special'                                         })
+hi('Delimiter',      { link = 'Special'                                         })
+hi('SpecialComment', { link = 'Special'                                         })
+hi('Debug',          { link = 'Special'                                         })
 
 -- nvimy Syntax Stuff
-hi('@variable',      { fg = YellowLight                                           })
+hi('@variable',      { fg = Fg                                                  })
 
 -- git
-hi('DiffAdd',        { fg = Green,       bg = Menus                               })
-hi('DiffDelete',     { fg = Red,         bg = Menus                               })
-hi('DiffChange',     { fg = YellowBright,bg = Menus                               })
-hi('Added',          { fg = Green,       bg = Menus                               })
-hi('Removed',        { fg = Red,         bg = Menus                               })
-hi('Changed',        { fg = YellowBright,bg = Menus                               })
-hi('DiffText',       { fg = YellowLight                                           })
-hi('GitSignsStagedAdd',   { fg = Green,       bg = Menus, bold = true             })
-hi('GitSignsStagedDelete',{ fg = Red,         bg = Menus, bold = true             })
-hi('GitSignsStagedChange',{ fg = YellowBright,bg = Menus, bold = true             })
+hi('DiffAdd',        { fg = Green,       bg = Bg1                               })
+hi('DiffDelete',     { fg = Red,         bg = Bg1                               })
+hi('DiffChange',     { fg = YellowLit,   bg = Bg1                               })
+hi('Added',          { fg = Green,       bg = Bg1                               })
+hi('Removed',        { fg = Red,         bg = Bg1                               })
+hi('Changed',        { fg = YellowLit,   bg = Bg1                               })
+hi('DiffText',       { fg = Fg                                                  })
+hi('GitSignsStagedAdd',   { fg = Green,       bg = Bg1, bold = true             })
+hi('GitSignsStagedDelete',{ fg = Red,         bg = Bg1, bold = true             })
+hi('GitSignsStagedChange',{ fg = YellowLit,   bg = Bg1, bold = true             })
 
 -- spell
-hi('SpellBad',       { sp = Red,                      undercurl = true            })
-hi('SpellCap',       { sp = OrangeLight,              undercurl = true            })
-hi('SpellLocal',     { sp = OrangeDark,               undercurl = true            })
-hi('SpellRare',      { sp = Gray,                     undercurl = true            })
+hi('SpellBad',       { sp = Red,                      undercurl = true          })
+hi('SpellCap',       { sp = OrangeLit,                undercurl = true          })
+hi('SpellLocal',     { sp = OrangeDim,                undercurl = true          })
+hi('SpellRare',      { sp = Gray,                     undercurl = true          })
 
 
-hi('ErrorMsg',       { fg = Red,         bg = UI_BG,  bold = true                 })
-hi('WarningMsg',     { fg = YellowLight, bg = Warn                                })
-hi('Todo',           { fg = YellowBright,             bold = true, reverse = true })
-hi('Question',       { fg = Green,                    bold = true, reverse = true })
-hi('Error',          { fg = Red,                      bold = true, reverse = true })
-hi('NonText',        { fg = "#5f5252"                                             })
-hi('Underlined',     {                                underline = true            })
+hi('ErrorMsg',       { fg = Red,         bg = Bg1,  bold = true, reverse = true })
+hi('WarningMsg',     { fg = Yellow,      bg = Bg1,                              })
+hi('Todo',           { fg = YellowLit,              bold = true, reverse = true })
+hi('Question',       { fg = Green,                  bold = true, reverse = true })
+hi('Error',          { fg = Red,                    bold = true, reverse = true })
+hi('NonText',        { fg = GrayDim,                                            })
+hi('Underlined',     {                              underline = true            })
 
 -- Illuminate
-hi('IlluminatedWordText', {                           underline = true            })
+hi('IlluminatedWordText', {                         underline = true            })
 
 -- Better Comments
-hi('ErrorComment',   { fg = Red,                      bold = true                 })
-hi('QuestComment',   { fg = Green,                    bold = true                 })
-hi('NoteComment',    { fg = YellowBright,             bold = true                 })
+hi('ErrorComment',   { fg = Red,                    bold = true                 })
+hi('QuestComment',   { fg = Green,                  bold = true                 })
+hi('NoteComment',    { fg = YellowLit,              bold = true                 })

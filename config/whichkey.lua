@@ -63,6 +63,13 @@ require('which-key').add({
    {"<leader>w",        "<C-w>w",                 desc = "next window"},
 
 
+	-- lsp ugh
+	{"<leader>j", group = "LSP"},
+	{"<leader>ju", ":lua vim.lsp.buf.definition()<CR>",  desc = "goto def"},
+	{"<leader>jU", ":lua vim.lsp.buf.declaration()<CR>", desc = "goto decl"},
+	{"<leader>jj", ":lua vim.lsp.buf.hover()<CR>",       desc = "doc hover"},
+	{"<leader>jn", ":lua vim.lsp.buf.rename()<CR>",      desc = "rename"},
+
    -- Spell
    {"<leader>s", group = "Spell"},
    {"<leader>sS", toggle_spell, desc = "toggle"},

@@ -11,25 +11,33 @@ for alias, cmd in pairs(commands) do
    vim.api.nvim_create_user_command(alias, cmd, {})
 end
 
-
--- Buffer switching
-function switch_buffer(num)
-   local ls = vim.split(vim.api.nvim_exec("ls", true), '\n', {})
-   local buffers = {}
-
-   for _, buf in pairs(ls) do
-      table.insert(buffers, string.match(buf, "%S+"))
-   end
-
-   if #buffers >= num then
-      vim.cmd(":b " .. buffers[num])
-   end
-end
-
-for i = 1, 9 do
-   vim.api.nvim_set_keymap('n', 
-      string.format('<M-%d>', i),
-      string.format(':lua switch_buffer(%d)<CR>', i),
-      { noremap = true, silent = true }
-   )
-end
+vim.api.nvim_set_keymap('n', '<M-1>', 
+	':LualineBuffersJump! 1<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-2>', 
+	':LualineBuffersJump! 2<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-3>', 
+	':LualineBuffersJump! 3<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-4>', 
+	':LualineBuffersJump! 4<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-5>', 
+	':LualineBuffersJump! 5<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-6>', 
+	':LualineBuffersJump! 6<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-7>', 
+	':LualineBuffersJump! 7<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-8>', 
+	':LualineBuffersJump! 8<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-9>', 
+	':LualineBuffersJump! 9<CR>',
+	{ noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<M-0>', 
+	':LualineBuffersJump! 10<CR>',
+	{ noremap = true, silent = true })

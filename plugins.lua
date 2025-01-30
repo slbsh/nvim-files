@@ -17,13 +17,37 @@ require('pckr').add({
       requires = { "nvim-lua/plenary.nvim" }
    },
 
+	-- I hate this shit cabbage
+	{'neovim/nvim-lspconfig', 
+		requires = { 'hrsh7th/cmp-nvim-lsp' }, 
+      cond = event('BufReadPost', '*.rs'),
+		config = function() 
+			local cap = require('cmp_nvim_lsp').default_capabilities()
+			local lc = require("lspconfig")
+
+			cap.textDocument.completion.completionItem.labelDetailsSupport = false
+
+			lc.rust_analyzer.setup({
+				capabilities = cap,
+				setting = {
+					['rust-analyzer'] = {},
+				}
+			})
+
+			vim.lsp.inlay_hint.enable(false)
+			vim.diagnostic.enable(false)
+	end },
+
    -- Completion
    {'hrsh7th/nvim-cmp', requires = {
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-calc',
+      'hrsh7th/cmp-nvim-lsp',
       'f3fora/cmp-spell',
+		'davidsierradz/cmp-conventionalcommits',
+		'onsails/lspkind.nvim',
    }},-- Completion
    {'github/copilot.vim', config = function() 
       vim.g.copilot_filetypes = { ["*"] = true }

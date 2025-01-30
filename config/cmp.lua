@@ -1,4 +1,5 @@
 local cmp = require('cmp')
+local lspkind = require('lspkind')
 
 cmp.setup({
    snippet = {
@@ -6,6 +7,25 @@ cmp.setup({
          vim.snippet.expand(args.body)
       end,
    },
+
+	formatting = {
+		format = lspkind.cmp_format({
+			maxwidth = { menu = 50, abbr = 50 },
+			ellipsis_char = '..',
+			mode = 'symbol',
+			menu = {
+				buffer = "ᵇᵘᶠ", 
+				nvim_lsp = "ˡˢᵖ",
+				calc = "ᶜᵃˡ",
+				crates = "ᶜʳ",
+				git = "ᵍᶦᵗ",
+				path = "ᵖᵃᵗʰ",
+				spell = "ˢᵖ",
+				conventionalcommits = "ᶜᶜ",
+				ext = "ᵉˣᵗ",
+			}
+		}),
+	},
 
    mapping = cmp.mapping.preset.insert({      
       ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -22,6 +42,7 @@ cmp.setup({
    }),
 
    sources = {
+		{ name = 'conventionalcommits' },
       { name = 'git' },
       { name = 'crates' },
       { name = 'calc' },
@@ -29,6 +50,7 @@ cmp.setup({
       { name = 'path' }, 
       { name = 'buffer' },
       { name = 'spell' },
+      { name = 'nvim_lsp' },
    },
 
    window = {
