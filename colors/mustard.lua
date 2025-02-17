@@ -1,6 +1,6 @@
 -- setup
 vim.cmd.highlight('clear')
-vim.g.colors_name = 'rust'
+vim.g.colors_name = 'mustard'
 vim.o.termguicolors = true
 
 local hi = function(name, val)
@@ -12,9 +12,9 @@ end
 -- set t_Co=256
 
 local Fg   = "#d7c17e"
-local Bg0  = "#24231e"
-local Bg1  = "#38352e"
-local Bg2  = "#514d43"
+local Bg0  = "#1e1d1a"
+local Bg1  = "#2f2c28"
+local Bg2  = "#48443d"
 
 local OrangeGreen = "#92730c"
 local OrangeDim   = "#c77905"
@@ -41,18 +41,18 @@ local Blue        = "#6385a1"
 local BlueLit     = "#799eaf"
 
 -- the stuff
-hi('Normal',         { fg = Fg,          bg = Bg0                                })
-hi('Cursor',         { fg = Bg0,          bg = Fg                                })
+hi('Normal',         { fg = Fg,          bg = Bg0                               })
+hi('Cursor',         { fg = Bg0,         bg = Fg                                })
 hi('TermCursor',     { link = 'Cursor'                                          })
 hi('CursorLine',     {                   bg = Bg1                               })
-hi('CursorLineNr',   { fg = GreenDim,    bg = Bg0                                })
+hi('CursorLineNr',   { fg = GreenDim,    bg = Bg0                               })
 hi('CursorColumn',   {                   bg = Bg1                               })
 hi('CursorLineNr',   { fg = Yellow,      bg = Bg1                               })
 hi('LineNr',         { fg = Fg,          bg = Bg1                               })
 hi('ColorColumn',    {                   bg = Bg1                               })
 hi('FoldColumn',     { fg = Gray,        bg = Bg1                               })
 hi('SignColumn',     { fg = Gray,        bg = Bg1                               })
-hi('FloatBorder',    {                   bg = Bg0                                })
+hi('FloatBorder',    {                   bg = Bg0                               })
 
 hi('VertSplit',      { fg = "#b29d83",   bg = Bg1                               })
 hi('MatchParen',     { fg = RedLit,                 underline = true            })
@@ -62,15 +62,15 @@ hi('TabLine',        {                   bg = Bg1,  underline = true            
 hi('TabLineFill',    {                              reverse = true              })
 hi('TabLineSel',     { fg = Fg,                     bold = true                 })
 
-hi('Pmenu',          { fg = Fg,          bg = Bg0                                })
+hi('Pmenu',          { fg = Fg,          bg = Bg0                               })
 hi('PmenuSel',       {                   bg = GrayDim                           })
 
 hi('IncSearch',      { fg = Bg0,         bg = OrangeLit,                        })
 hi('Search',         {                              underline = true            })
 hi('Directory',      { fg = Red                                                 })
-hi('Folded',         { fg = "#a18e77",   bg = Bg0                                })
-hi('WildMenu',       { fg = GreenDim,    bg = Bg0                                })
-hi('Visual',         {                   bg = Bg2                           })
+hi('Folded',         { fg = "#a18e77",   bg = Bg0                               })
+hi('WildMenu',       { fg = GreenDim,    bg = Bg0                               })
+hi('Visual',         {                   bg = Bg2                               })
 hi('Title',          { fg = Fg,                     bold = true                 })
 
 hi('WinSeparator',   { link = 'VertSplit'                                       })
@@ -121,7 +121,7 @@ hi('Special',        { fg = Fg                                                  
 hi('SpecialKey',     { fg = fg2,         bg = Bg1                               })
 hi('Statement',      { fg = OrangeLit,                                          })
 hi('StorageClass',   { fg = OrangeDim,               italic = true              })
-hi('String',         { fg = OrangeGreen,                                          })
+hi('String',         { fg = OrangeGreen,                                        })
 hi('Tag',            { fg = OrangeLit,                                          })
 hi('Type',           { fg = OrangeDim                                           })
 hi('Repeat',         { link = 'Statement'                                       })

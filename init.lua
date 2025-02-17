@@ -32,7 +32,7 @@ vim.opt.listchars:append "tab:▎ "
 vim.g.mapleader        = " "
 vim.g.zig_fmt_autosave = 0
 
-vim.cmd('colorscheme rust')
+vim.cmd('colorscheme mustard')
 
 local HOME = os.getenv("HOME")
 
