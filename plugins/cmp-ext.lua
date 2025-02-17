@@ -83,10 +83,10 @@ source.items = function()
       aleph   = "ℵ", bet    = "ℶ",
 
       -- Arrows
-      leftarrow  = "←", Leftarrow  = "⇐",
-      rightarrow = "→", Rightarrow = "⇒",
-      uparrow    = "↑", Uparrow    = "⇑",
-      downarrow  = "↓", Downarrow  = "⇓",
+      larrow = "←", flarrow = "⇐",
+      rarrow = "→", frarrow = "⇒",
+      uarrow = "↑", fuarrow = "⇑",
+      darrow = "↓", fdarrow = "⇓",
 
       -- Math
       times     = "×", divide   = "÷",
