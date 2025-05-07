@@ -15,6 +15,9 @@ vim.opt.hlsearch     = false
 vim.opt.autoread     = true
 vim.opt.incsearch    = true
 vim.opt.ignorecase   = true
+vim.opt.textwidth    = 0
+vim.opt.wrapmargin   = 0
+vim.opt.linebreak    = true
 vim.opt.smartcase    = true
 vim.opt.showmatch    = true
 vim.opt.showmode     = false
@@ -28,9 +31,12 @@ vim.opt.list         = true
 vim.opt.listchars:append "space:⋅"
 vim.opt.listchars:append "eol:↴"
 vim.opt.listchars:append "tab:▎ "
+vim.opt.fillchars:append "eob: "
 
-vim.g.mapleader        = " "
-vim.g.zig_fmt_autosave = 0
+vim.o.swapfile          = false
+vim.g.mapleader         = " "
+vim.g.zig_fmt_autosave  = 0
+vim.opt_local.spelllang = 'en_us'
 
 vim.cmd('colorscheme mustard')
 
@@ -47,3 +53,12 @@ end
 
 load_dir(HOME .. "/.config/nvim/plugins")
 load_dir(HOME .. "/.config/nvim/config")
+
+-- hack to make all vertical splits horizontal :v
+local run_cmd = vim.cmd
+vim.cmd = setmetatable({}, {
+	__call = function(_, cmd) 
+		run_cmd(cmd:gsub("^vsplit", "split"))
+	end,
+	__index = run_cmd,
+})

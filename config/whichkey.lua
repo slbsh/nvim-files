@@ -3,17 +3,6 @@ function prompt(prompt, cmd)
    vim.api.nvim_command(cmd .. vim.fn.input(prompt))
 end
 
--- Toggles
-function toggle_wrap()
-   vim.api.nvim_set_option("wrap", not vim.api.nvim_get_option("wrap"))
-end
-
-vim.opt_local.spelllang = 'en_us'
-function toggle_spell()
-   vim.opt_local.spell = not vim.opt_local.spell:get()
-end
-
-
 -- Git
 function set_upstream()
    local branch = vim.fn.system("git rev-parse --abbrev-ref HEAD")
@@ -40,27 +29,26 @@ function crates(field)
    end
 end
 
-
 -- Which Key
 require('which-key').setup {
-   triggers = {
-      { "<auto>", mode = "nvxsot" },
-   },
+   triggers = { { "<auto>", mode = "nvxsot" } },
 }
 
 require('which-key').add({
    mode = {"n", "v"},
-   
+
    {"<leader>c", desc = "comment",         mode = "n"},
    {"<leader>c", desc = "comment",         mode = "v"},
    {"<leader>x", desc = "append comment",  mode = "n"},
 
-   {"<leader><leader>", ":noh<CR>",               desc = "clear"},
-   {"<leader>t",        ":ToggleTerm<CR>",        desc = "toggleterm"},
-   {"<leader><C-t>",    ":terminal<CR>",          desc = "terminal (empty)"},
-   {"<leader>T",        ":RunTerm<CR>",           desc = "terminal"},
-   {"<leader>W",        ":lua toggle_wrap()<CR>", desc = "wrap"},
-   {"<leader>w",        "<C-w>w",                 desc = "next window"},
+   {"<leader><leader>", ":noh<CR>",            desc = "clear"},
+   {"<leader>t",     ":ToggleTerm<CR>",        desc = "toggleterm"},
+   {"<leader><C-t>", ":terminal<CR>",          desc = "terminal (empty)"},
+   {"<leader>T",     ":RunTerm<CR>",           desc = "terminal"},
+   {"<leader>W",     ":lua vim.wo.wrap = not vim.wo.wrap<CR>", desc = "wrap"},
+   {"<leader>w",     "<C-w>w",                 desc = "next window"},
+	{"<leader>z",     ":lua require('zen-mode').toggle()<CR>",  desc = "zen"},
+	{"<leader>p",     ":lua require('wrapping-paper').wrap_line()<CR>",  desc = "wrap line"},
 
 
 	-- lsp ugh
@@ -69,10 +57,14 @@ require('which-key').add({
 	{"<leader>jU", ":lua vim.lsp.buf.declaration()<CR>", desc = "goto decl"},
 	{"<leader>jj", ":lua vim.lsp.buf.hover()<CR>",       desc = "doc hover"},
 	{"<leader>jn", ":lua vim.lsp.buf.rename()<CR>",      desc = "rename"},
+	{"<leader>jM", ":lua require('ferris.methods.expand_macro')()<CR>", desc = "expand macro"},
+	{"<leader>jm", ":lua require('ferris.methods.view_memory_layout')()<CR>", desc = "mem layout"},
+	{"<leader>jH", ":lua require('ferris.methods.view_hir')()<CR>", desc = "hir"},
+	{"<leader>jh", ":lua require('ferris.methods.view_mir')()<CR>", desc = "mir"},
 
    -- Spell
    {"<leader>s", group = "Spell"},
-   {"<leader>sS", toggle_spell, desc = "toggle"},
+   {"<leader>sS", ":lua vim.opt_local.spell = not vim.opt_local.spell:get()<CR>", desc = "toggle"},
    {"<leader>ss", '1z=',        desc = "first"},
    {"<leader>sn", ']s',         desc = "next"},
    {"<leader>sN", ']S',         desc = "next bad"},
@@ -148,16 +140,6 @@ require('which-key').add({
    {"<leader>g*d", ":lua prompt('URL: ', 'Git remote remove ')", desc = 'remove remote'},
    {"<leader>g*u", ":Git remote update<CR>", desc = 'update remote'},
 
-   {"<leader>h", group = 'gh'},
-   {"<leader>ha", ":Octo actions<CR>",      desc = 'actions'},
-   {"<leader>hr", ":Octo repo list<CR>",    desc = 'repos'},
-	{"<leader>hf", ":Octo repo fork<CR>",    desc = 'fork'},
-   {"<leader>hi", ":Octo issue list<CR>",   desc = 'issues'},
-   {"<leader>hI", ":Octo issue search<CR>", desc = 'issues all'},
-   {"<leader>hc", ":Octo issue create<CR>", desc = 'create issue'},
-   {"<leader>hp", ":Octo pr list<CR>",      desc = 'prs'},
-   {"<leader>hP", ":Octo pr search<CR>",    desc = 'prs all'},
-
 
 
    -- Buffers
@@ -186,8 +168,8 @@ require('which-key').add({
    {"<leader>oF", ":%!fold -w 100 -s<CR>",             desc = "fold buf"},
    {"<leader>bt", ':retab<CR>',                        desc = 'retab'},
    {"<leader>bT", ':retab!<CR>',                       desc = 'retab!'},
-   {"<leader>oz", ":terminal ouch decompress %:p<CR>", desc = "decomp"},
-   {"<leader>oZ", ":terminal ouch decompress %:p && rm %:p<CR>", desc = "decomp & rm"},
+   -- {"<leader>oz", ":terminal ouch decompress %:p<CR>", desc = "decomp"},
+   -- {"<leader>oZ", ":terminal ouch decompress %:p && rm %:p<CR>", desc = "decomp & rm"},
 
 
    -- Eval
@@ -242,6 +224,7 @@ require('which-key').add({
    {"<leader>CD", crates("open_documentation"),      desc = 'docs'},
    {"<leader>Cu", crates("upgrade_crate"),           desc = 'update'},
    {"<leader>CU", crates("upgrade_all_crates"),      desc = 'update all'},
+
 
 	{"<leader>m", group = "Map"},
 	{"<leader>mc", ":MapChars superscript<CR>", desc = "superscript"},

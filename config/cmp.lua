@@ -42,7 +42,6 @@ cmp.setup({
    }),
 
    sources = {
-		{ name = 'conventionalcommits' },
       { name = 'git' },
       { name = 'crates' },
       { name = 'calc' },
