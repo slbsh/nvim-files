@@ -178,7 +178,7 @@ source.items = function()
 
       -- Emoji
       rocket     = "🚀", eyes      = "👀",
-      heart      = "❤️",  thumbsup  = "👍",
+      heart      = "❤️", thumbsup  = "👍",
       skull      = "💀", beg       = "🥺👉👈",
       vomit      = "🤮", hundered  = "💯",
       sob        = "😭", flushed   = "😳",

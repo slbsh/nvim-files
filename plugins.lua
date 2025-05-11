@@ -17,12 +17,13 @@ local event = require('pckr.loader.event')
 local keys = require('pckr.loader.keys')
 require('pckr').add({
 	autoremove = true,
+
 	"nvim-lua/plenary.nvim",
 	{"lewis6991/pckr.nvim",
 		requires = { "nvim-lua/plenary.nvim" }
 	},
 
-	'/home/slab/src/BQN/editors/vim/',
+	-- '/home/slab/src/BQN/editors/vim/',
 	-- 'https://git.sr.ht/~detegr/nvim-bqn',
 
 	-- I hate this shit cabbage
@@ -41,23 +42,21 @@ require('pckr').add({
 					['rust-analyzer'] = {},
 				}
 			})
-
-			lc.omnisharp.setup({
-				cmd = { "omnisharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) }
-			})
+			
+			lc.clangd.setup({})
 
 			vim.lsp.inlay_hint.enable(false)
 			vim.diagnostic.enable(false)
 		end },
 
-	{'vxpm/ferris.nvim', 
-		cond = event('BufReadPost', '*.rs'),
-		config = function() 
-			require('ferris').setup({ 
-				create_commands = false,
-			})
-		end,
-	},
+	-- {'vxpm/ferris.nvim', 
+	-- 	cond = event('BufReadPost', '*.rs'),
+	-- 	config = function() 
+	-- 		require('ferris').setup({ 
+	-- 			create_commands = false,
+	-- 		})
+	-- 	end,
+	-- },
 
 
 	--
@@ -175,38 +174,6 @@ require('pckr').add({
 			}) 
 			vim.api.nvim_command('ColorizerToggle')
 	end},
-	{'folke/twilight.nvim',
-		config = function()
-			require('twilight').setup({
-				dimming = {
-					alpha = 0.35,
-				},
-				context = 15,
-				exclude = { "markdown", "" },
-			})
-		end
-	},
-
-	{'folke/zen-mode.nvim', 
-		-- cond = keys('n', '<leader>z'),
-		config = function() 
-			require("zen-mode").setup({
-				window = {
-					width = 1,
-					options = {
-						cursorline = false,
-						showcmd = false,
-						number  = false,
-						laststatus = 0,
-					},
-				},
-				plugins = {
-					gitsigns = { enabled = false },
-					twilight = { enabled = true },
-				},
-			}) 
-		end
-	},
 
 	{ "benlubas/wrapping-paper.nvim", 
 		requires = { 'MunifTanjim/nui.nvim' },
@@ -222,6 +189,28 @@ require('pckr').add({
 		})
 	end},
 
+	-- {'karb94/neoscroll.nvim', config = function() 
+	-- 	require('neoscroll').setup({
+	-- 		easing = 'sine',
+	-- 		duration_multiplier = 1.5,
+	-- 	})
+	-- end},
+
+	{'sphamba/smear-cursor.nvim', config = function() 
+		require('smear_cursor').setup({
+			-- legacy_computing_symbols_support = true,
+			cursor_color = "#f2a40d",
+			smear_insert_mode = true,
+
+			time_interval = 10,
+			stiffness = 0.3,
+			trailing_stiffness = 0.2,
+			trailing_exponent = 4,
+			never_draw_over_target = true,
+			hide_target_hack = true,
+			gamma = 1,
+		}) 
+	end },
 	{'RRethy/vim-illuminate', config = function()
 		require('illuminate').configure({
 			delay = 10,

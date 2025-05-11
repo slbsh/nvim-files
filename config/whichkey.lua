@@ -47,7 +47,6 @@ require('which-key').add({
    {"<leader>T",     ":RunTerm<CR>",           desc = "terminal"},
    {"<leader>W",     ":lua vim.wo.wrap = not vim.wo.wrap<CR>", desc = "wrap"},
    {"<leader>w",     "<C-w>w",                 desc = "next window"},
-	{"<leader>z",     ":lua require('zen-mode').toggle()<CR>",  desc = "zen"},
 	{"<leader>p",     ":lua require('wrapping-paper').wrap_line()<CR>",  desc = "wrap line"},
 
 
@@ -57,10 +56,10 @@ require('which-key').add({
 	{"<leader>jU", ":lua vim.lsp.buf.declaration()<CR>", desc = "goto decl"},
 	{"<leader>jj", ":lua vim.lsp.buf.hover()<CR>",       desc = "doc hover"},
 	{"<leader>jn", ":lua vim.lsp.buf.rename()<CR>",      desc = "rename"},
-	{"<leader>jM", ":lua require('ferris.methods.expand_macro')()<CR>", desc = "expand macro"},
-	{"<leader>jm", ":lua require('ferris.methods.view_memory_layout')()<CR>", desc = "mem layout"},
-	{"<leader>jH", ":lua require('ferris.methods.view_hir')()<CR>", desc = "hir"},
-	{"<leader>jh", ":lua require('ferris.methods.view_mir')()<CR>", desc = "mir"},
+	-- {"<leader>jM", ":lua require('ferris.methods.expand_macro')()<CR>", desc = "expand macro"},
+	-- {"<leader>jm", ":lua require('ferris.methods.view_memory_layout')()<CR>", desc = "mem layout"},
+	-- {"<leader>jH", ":lua require('ferris.methods.view_hir')()<CR>", desc = "hir"},
+	-- {"<leader>jh", ":lua require('ferris.methods.view_mir')()<CR>", desc = "mir"},
 
    -- Spell
    {"<leader>s", group = "Spell"},
