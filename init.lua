@@ -29,7 +29,7 @@ vim.opt.list         = true
 -- vim.opt.mouse        = ""
 
 vim.opt.listchars:append "space:⋅"
-vim.opt.listchars:append "eol:↴"
+-- vim.opt.listchars:append "eol:↴"
 vim.opt.listchars:append "tab:▎ "
 vim.opt.fillchars:append "eob: "
 

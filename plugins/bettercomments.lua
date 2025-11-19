@@ -1,7 +1,7 @@
 local highlights = {
-   ErrorComment = {"!", "DEPRECATED"},
+   ErrorComment = {"!", "DEPRECATED", "FIXME"},
    QuestComment = {"?", "QUESTION", "SAFETY"},
-   NoteComment  = {"#", "FOOTNOTE", "NOTE", "INFO"},
+   NoteComment  = {"#", "FOOTNOTE", "NOTE", "INFO", "TODO"},
 }
 
 local function set_highlights()

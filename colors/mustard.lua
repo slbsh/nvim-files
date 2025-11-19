@@ -137,6 +137,7 @@ hi('Debug',          { link = 'Special'                                         
 
 -- nvimy Syntax Stuff
 hi('@variable',      { fg = Fg                                                  })
+hi('@lsp.type.type', { link = 'Type'                                            })
 
 -- git
 hi('DiffAdd',        { fg = Green,                                              })

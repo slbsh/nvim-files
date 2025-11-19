@@ -97,7 +97,8 @@ source.items = function()
       notin     = "∉", subset   = "⊂",
       supset    = "⊃", cup      = "∪",
       cap       = "∩", in_      = "∈",
-      notsubset = "⊄", 
+      notsubset = "⊄", sqrt     = "√",
+		plusminus = "±",
 
 		micro     = "µ", degree   = "°",
 

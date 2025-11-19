@@ -155,7 +155,7 @@ require('which-key').add({
 
    -- Files
    {"<leader>f", group = "Files"},
-   {"<leader>ft", ':Xplr %:p:h<CR>',                desc = 'Xplr'},
+   {"<leader>ft", ':Xplr \"%:p:h\"<CR>',            desc = 'Xplr'},
    {"<leader>fr", ':Telescope oldfiles<CR>',        desc = 'recent'},
    {"<leader>fg", ':Telescope live_grep<CR>',       desc = 'grep'},
    {"<leader>ff", ':Telescope find_files<CR>',      desc = 'find'},

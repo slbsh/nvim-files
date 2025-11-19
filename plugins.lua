@@ -70,12 +70,12 @@ require('pckr').add({
 		'f3fora/cmp-spell',
 		'onsails/lspkind.nvim',
 	}},-- Completion
-	{'github/copilot.vim', config = function() 
-		vim.g.copilot_filetypes = { ["*"] = true }
-		vim.keymap.set('i', "\\", 'copilot#Accept("\\\\")', { expr = true, replace_keycodes = false })
-		vim.keymap.set('i', "<M-\\>", '\\', {})
-		vim.g.copilot_no_tab_map = true
-	end },
+	-- {'github/copilot.vim', config = function() 
+	-- 	vim.g.copilot_filetypes = { ["*"] = true }
+	-- 	vim.keymap.set('i', "\\", 'copilot#Accept("\\\\")', { expr = true, replace_keycodes = false })
+	-- 	vim.keymap.set('i', "<M-\\>", '\\', {})
+	-- 	vim.g.copilot_no_tab_map = true
+	-- end },
 
 
 	--
